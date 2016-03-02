@@ -28,6 +28,7 @@
 	<div class="main-contents">
 		<td align="center">
 <%
+	int cnt = 0;
 	String id = "";
 	String pass ="";
 	if(request.getParameter("id") != null){
@@ -41,9 +42,10 @@
 			"root","root");
 
 	Statement st = con.createStatement();
-	String sql = "SELECT * FROM keijiban WHERE id = \"" +id + "\" and pass =\"" +pass +"\"";
+	String sql = "SELECT login_id,password FROM users WHERE login_id = \"" +id + "\" and pass =\"" +pass +"\"";
 	ResultSet rs = st.executeQuery(sql);
 
+	cnt = 1;
 	while(rs.next()){
 		id = rs.getString("id");
 		pass  = rs.getString("pass");
@@ -55,9 +57,10 @@
 	}
 }
 %>
-<form id= "frm1" name="frm1" action="Postnewscreen.jsp" method="post" onSubmit="returnfrmCheck()">
+<form id= "frm1" name="frm1" action="" method="post" onSubmit="returnfrmCheck()">
 				<br />
 				<table>
+				<!--
 					<tr>
 						<td>ユーザーID <input name="id"  id="id" size="40"
 							maxlength="32"  /></td>
@@ -67,8 +70,23 @@
 							id="password" size="41" maxlength="32"  /><br />
 						</td>
 					</tr>
+					-->
+					<tr>
+					<td>ログ<input type="text" name="id" />
+					<input type="submit" value="ログ" /></td></tr>
+					<tr>
+					<td>パス<input type="text" name="pass" />
+					<input type="submit" value="パス" /></td><tr>
+
 				</table>
-				<a href="Postnewscreen.jsp"><input type="submit" value="ログイン" /></a><br />
+
+				<%if(cnt == 2){					%>
+	<p>ログ:<%= id %>
+	ログ:</p>
+	<%}else if(cnt == 1){ %>
+		<p>一致する郵便番号がありませんでした。</p>
+<%}%>
+				<input type="submit" value="ログイン" /><br />
 				<a href="home.jsp">ホームへ戻る</a>
 
 			</form>
