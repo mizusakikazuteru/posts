@@ -7,7 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <title>ログイン画面</title>
+<style type="text/css">
+*{padding:5px; margin:0px;}
+   body{textalign:center;  background: url("login.png") no-repeat;}
+ </style>
 <script type="text/javascript">
 	function frmCheck() {
 		var checkLogin = document.frm1.login.value;
@@ -24,73 +29,13 @@
 </script>
 </head>
 <body>
-	<h3>ログイン画面</h3>
-	<div class="main-contents">
-		<td align="center">
-<%
-	int cnt = 0;
-	String id = "";
-	String pass ="";
-	if(request.getParameter("id") != null){
-		id = request.getParameter("id");
-
-	if(request.getParameter("pass") != null){
-		pass = request.getParameter("pass");
-
-	Class.forName("com.mysql.jdbc.Driver");
-	Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/test",
-			"root","root");
-
-	Statement st = con.createStatement();
-	String sql = "SELECT login_id,password FROM users WHERE login_id = \"" +id + "\" and pass =\"" +pass +"\"";
-	ResultSet rs = st.executeQuery(sql);
-
-	cnt = 1;
-	while(rs.next()){
-		id = rs.getString("id");
-		pass  = rs.getString("pass");
-
-	}
-	rs.close();
-	st.close();
-	con.close();
-	}
-}
-%>
-<form id= "frm1" name="frm1" action="" method="post" onSubmit="returnfrmCheck()">
-				<br />
-				<table>
-				<!--
-					<tr>
-						<td>ユーザーID <input name="id"  id="id" size="40"
-							maxlength="32"  /></td>
-					</tr>
-					<tr>
-						<td>パスワード&nbsp;&nbsp; <input name="password" type="password"
-							id="password" size="41" maxlength="32"  /><br />
-						</td>
-					</tr>
-					-->
-					<tr>
-					<td>ログ<input type="text" name="id" />
-					<input type="submit" value="ログ" /></td></tr>
-					<tr>
-					<td>パス<input type="text" name="pass" />
-					<input type="submit" value="パス" /></td><tr>
-
-				</table>
-
-				<%if(cnt == 2){					%>
-	<p>ログ:<%= id %>
-	ログ:</p>
-	<%}else if(cnt == 1){ %>
-		<p>一致する郵便番号がありませんでした。</p>
-<%}%>
-				<input type="submit" value="ログイン" /><br />
-				<a href="home.jsp">ホームへ戻る</a>
-
-			</form>
-			</td>
-	</div>
+<h1>ログイン画面</h1>
+<form action="home.jsp" method="post" >
+<table>
+<tr><th>ユーザーID:</th><td><input type="text" name="userId" /><td></tr><br />
+<tr><th>パスワード:</th><td><input type="password" name="pass"></td></tr><br />
+<td><input type="submit" value="ログイン" /></td>
+</table>
+</form>
 </body>
 </html>
