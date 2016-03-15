@@ -1,6 +1,7 @@
-/util/
-/exception/
+/beans/
 /contloller/
-/service/
-/filter/
 /dao/
+/exception/
+/filter/
+/service/
+/util/

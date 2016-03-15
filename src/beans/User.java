@@ -7,11 +7,11 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private int id;
-	private String login_id;
+	private String loginId;
 	private String password;
 	private String name;
-	private String branch_id;
-	private String department_id;
+	private String branchId;
+	private String departmentId;
 
 	private boolean is_active;
 
@@ -25,12 +25,12 @@ public class User implements Serializable {
 	}
 
 	// ②ログID
-	public String getlogin_id() {
-		return login_id;
+	public String getLoginId() {
+		return loginId;
 	}
 
-	public void setlogin_id(String login_id) {
-		this.login_id = login_id;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
 
 	// ③パスワード
@@ -52,28 +52,28 @@ public class User implements Serializable {
 	}
 
 	// ④支店番号
-	public String getbranch_id() {
-		return branch_id;
+	public String getBranchId() {
+		return branchId;
 	}
 
-	public void setbranch_id(String branch_id) {
-		this.branch_id = branch_id;
+	public void setBranchId(String branchId) {
+		this.branchId = branchId;
 	}
 
 	// ⑤部署・役職
-	public String getdepartment_id() {
-		return department_id;
+	public String getDepartmentId() {
+		return departmentId;
 	}
 
-	public void setdepartment_id(String department_id) {
-		this.department_id = department_id;
+	public void setDepartmentId(String departmentId) {
+		this.departmentId = departmentId;
 	}
 	// ⑥アカウント
-	public boolean getis_active() {
+	public boolean getisActive() {
 		return is_active;
 	}
 
-	public void setis_active(boolean is_active) {
+	public void setisActive(boolean is_active) {
 		this.is_active = is_active;
 	}
 }

@@ -38,18 +38,18 @@ public class SignUpServlet extends HttpServlet {
 		if (isValid(req, messages) == true) {
 
 			User user = new User();
-			user.setlogin_id(req.getParameter("login_id"));
+			user.setLoginId(req.getParameter("loginId"));
 			user.setPassword(req.getParameter("password"));
 			user.setName(req.getParameter("name"));
-			user.setbranch_id(req.getParameter("branch_id"));
-			user.setdepartment_id(req.getParameter("department_id"));
+			user.setBranchId(req.getParameter("branchid"));
+			user.setDepartmentId(req.getParameter("departmentid"));
 
 			new UserService().register(user);
 			//フォワード
 			 RequestDispatcher dispatcher =
 		              req.getRequestDispatcher("home.jsp");
 		          dispatcher.forward(req, res);
-			res.sendRedirect("./");
+			//res.sendRedirect("./");
 		} else {
 			session.setAttribute("errorMessages", messages);
 			res.sendRedirect("signup");
@@ -58,12 +58,12 @@ public class SignUpServlet extends HttpServlet {
 	//isValid メソッド (SQLServerConnection)
     //SQLServerConnection オブジェクトが閉じられておらず、有効であるかどうか。
 	private boolean isValid(HttpServletRequest req, List<String> messages) {
-		String login_id = req.getParameter("login_id");
+		String loginId = req.getParameter("loginId");
 		String password = req.getParameter("password");
 		String   name   = req.getParameter("name");
 
 
-		if (StringUtils.isEmpty(login_id) == true) {
+		if (StringUtils.isEmpty(loginId) == true) {
 			messages.add("ログインIDを入力してください");
 		}
 		if (StringUtils.isEmpty(password) == true) {

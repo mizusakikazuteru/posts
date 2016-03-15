@@ -16,18 +16,18 @@ import exception.SQLRuntimeException;
 public class UserDao {
 
 	public UserDao() {
-		System.out.println("hello");
+
 	}
 
-	public User getUser(Connection connection, String login_id,
+	public User getUser(Connection connection, String loginId,
 			String password) {
 
 		PreparedStatement ps = null;
 		try {
-			String sql = "SELECT * FROM user WHERE login_id AND password = ?";
+			String sql = "SELECT * FROM users WHERE login_id AND password = ?";
 
 			ps = connection.prepareStatement(sql);
-			ps.setString(1, login_id);
+			ps.setString(1, loginId);
 			ps.setString(2, password);
 
 			System.out.println(ps.toString());
@@ -53,26 +53,26 @@ public class UserDao {
 			close(ps);
 		}
 	}
-	//ユーザ情報を結果セットからbeansのUser.javaに入れる（65行目～91行目まで）
+	//ユーザ情報を結果セットからbeansのUser.javaに入れる（63行目～78行目まで）
 	private List<User> toUserList(ResultSet rs) throws SQLException {
 
 		List<User> ret = new ArrayList<User>();
 		try {
 			while (rs.next()) {
 				int id = rs.getInt("id");
-				String login_id = rs.getString("login_id");
+				String loginId = rs.getString("loginId");
 				String password = rs.getString("password");
 				String name = rs.getString("name");
-				String branch_id = rs.getString("branch_id");
-				String department_id = rs.getString("department_id");
+				String branchId = rs.getString("branchId");
+				String departmentId = rs.getString("departmentId");
 
 				User user = new User();
 				user.setId(id);
-				user.setlogin_id(login_id);
+				user.setLoginId(loginId);
 				user.setPassword(password);
 				user.setName(name);
-				user.setbranch_id(branch_id);
-				user.setdepartment_id(department_id);
+				user.setBranchId(branchId);
+				user.setDepartmentId(departmentId);
 
 
 				ret.add(user);
@@ -106,11 +106,11 @@ public class UserDao {
 
 			ps = connection.prepareStatement(sql.toString());
 
-			ps.setString(1, user.getlogin_id());
+			ps.setString(1, user.getLoginId());
 			ps.setString(2, user.getPassword());
 			ps.setString(3, user.getName());
-			ps.setString(4, user.getbranch_id());
-			ps.setString(5, user.getdepartment_id());
+			ps.setString(4, user.getBranchId());
+			ps.setString(5, user.getDepartmentId());
 
 
 			ps.executeUpdate();
@@ -126,8 +126,8 @@ public class UserDao {
 		PreparedStatement ps = null;
 		try {
 			StringBuilder sql = new StringBuilder();
-			sql.append("UPDATE user SET");
-			sql.append("INSERT INTO user ( ");
+			sql.append("UPDATE users SET");
+			sql.append("INSERT INTO users ( ");
 			sql.append(" login_id");
 			sql.append(", password");
 			sql.append(", name");
@@ -142,12 +142,11 @@ public class UserDao {
 
 			ps = connection.prepareStatement(sql.toString());
 
-			ps.setString(1, user.getlogin_id());
+			ps.setString(1, user.getLoginId());
 			ps.setString(2, user.getPassword());
 			ps.setString(3, user.getName());
-			ps.setString(4, user.getbranch_id());
-			ps.setString(5, user.getdepartment_id());
-
+			ps.setString(4, user.getBranchId());
+			ps.setString(5, user.getDepartmentId());
 
 			int count = ps.executeUpdate();
 			if (count == 0) {
@@ -165,7 +164,7 @@ public class UserDao {
 
 		PreparedStatement ps = null;
 		try {
-			String sql = "SELECT * FROM user WHERE id = ?";
+			String sql = "SELECT * FROM users WHERE id = ?";
 
 			ps = connection.prepareStatement(sql);
 			ps.setInt(1, id);
