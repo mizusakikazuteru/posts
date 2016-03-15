@@ -13,7 +13,7 @@ public class User implements Serializable {
 	private String branchId;
 	private String departmentId;
 
-	private boolean is_active;
+	private boolean isActive;
 
 	// ①ID
 	public int getId() {
@@ -69,11 +69,11 @@ public class User implements Serializable {
 		this.departmentId = departmentId;
 	}
 	// ⑥アカウント
-	public boolean getisActive() {
-		return is_active;
+	public boolean getIsActive() {
+		return isActive;
 	}
 
-	public void setisActive(boolean is_active) {
-		this.is_active = is_active;
+	public void setIsActive(boolean isActive) {
+		this.isActive = isActive;
 	}
 }

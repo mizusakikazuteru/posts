@@ -41,21 +41,21 @@ public class SignUpServlet extends HttpServlet {
 			user.setLoginId(req.getParameter("loginId"));
 			user.setPassword(req.getParameter("password"));
 			user.setName(req.getParameter("name"));
-			user.setBranchId(req.getParameter("branchid"));
-			user.setDepartmentId(req.getParameter("departmentid"));
+			user.setBranchId(req.getParameter("branchId"));
+			user.setDepartmentId(req.getParameter("departmentId"));
 
 			new UserService().register(user);
 			//フォワード
 			 RequestDispatcher dispatcher =
 		              req.getRequestDispatcher("home.jsp");
 		          dispatcher.forward(req, res);
-			//res.sendRedirect("./");
+
 		} else {
 			session.setAttribute("errorMessages", messages);
 			res.sendRedirect("signup");
 		}
 	}
-	//isValid メソッド (SQLServerConnection)
+	//isValid メソッド (SQLServerConnection)　バリデーション処理
     //SQLServerConnection オブジェクトが閉じられておらず、有効であるかどうか。
 	private boolean isValid(HttpServletRequest req, List<String> messages) {
 		String loginId = req.getParameter("loginId");

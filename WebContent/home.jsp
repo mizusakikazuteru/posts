@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>投稿</title>
+<title>ホーム</title>
 <style type="text/css">
    *{padding:5px; margin:0px;}
    body{textalign:center;}
@@ -20,14 +20,21 @@
 </script>
 </head>
 <body>
+
+<p>お疲れ様です<c:out value="${loginUser}" />さん</p>
+<c:if test="${ empty loginUser }">
+<a href="login">ログイン</a>
+</c:if>
 <center>
 <h1>ホーム画面</h1>
+<c:if test="${ not empty loginUser }">
 <ul id="menu">
-<li><a href="post.jsp">新規投稿</a></li>
-<li><a href="user.jsp">ユーザー管理</a></li>
+<li><a href="post">新規投稿</a></li>
+<li><a href="management">ユーザー管理</a></li>
+<li><a href="logout">ログアウト</a></li>
 </ul>
-
-<form id="frm1"name="frm1"method="post"action="#" onsubmit="return frmCheck()">
+</c:if>
+<form id="frm1"name="frm1"method="post"action="" onsubmit="return frmCheck()">
 <table>
 <tr><th>件名</th><td><input type="text" name="title" maxlength="50" size="90" /></td></tr>
 <tr><th>本文</th><td><textarea name="messages" cols="70" rows="20" /></textarea></td></tr>

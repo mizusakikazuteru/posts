@@ -24,13 +24,14 @@ public class UserDao {
 
 		PreparedStatement ps = null;
 		try {
-			String sql = "SELECT * FROM users WHERE login_id AND password = ?";
+			String sql = "SELECT * FROM users WHERE login_id = ? AND password = ?";
+
 
 			ps = connection.prepareStatement(sql);
 			ps.setString(1, loginId);
 			ps.setString(2, password);
 
-			System.out.println(ps.toString());
+			//System.out.println(ps.toString());
 
 			ResultSet rs = ps.executeQuery();
 			List<User> userList = toUserList(rs);
@@ -38,7 +39,7 @@ public class UserDao {
 			if (userList.isEmpty() == true) {
 				//ユーザー情報が空の時NULL
 				return null;
-			} else if (2 <= userList.size()) {
+			} else if (3 <= userList.size()) {
 				//ユーザー情報が2個以上あるときエラー文
 				throw new IllegalStateException("2 <= userList.size()");
 			} else {
@@ -60,11 +61,11 @@ public class UserDao {
 		try {
 			while (rs.next()) {
 				int id = rs.getInt("id");
-				String loginId = rs.getString("loginId");
+				String loginId = rs.getString("login_id");
 				String password = rs.getString("password");
 				String name = rs.getString("name");
-				String branchId = rs.getString("branchId");
-				String departmentId = rs.getString("departmentId");
+				String branchId = rs.getString("branch_id");
+				String departmentId = rs.getString("department_id");
 
 				User user = new User();
 				user.setId(id);

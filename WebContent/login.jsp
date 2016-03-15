@@ -10,32 +10,44 @@
 
 <title>ログイン画面</title>
 <style type="text/css">
-*{padding:5px; margin:0px;}
-   body{textalign:center;  background: url("login.png") no-repeat;}
- </style>
+* {
+	padding: 5px;
+	margin: 0px;
+}
+
+body {
+	textalign: center;
+	background: url("login.png") no-repeat;
+}
+</style>
 <script type="text/javascript">
-	function frmCheck() {
-		var checkLogin = document.frm1.login.value;
-		if (!checkID.match([ azAZ0 * 9 ], [ 5, 19 ])) {
-			alert("半角英数字6文字以上20文字以下で入力して下さい。");
-			document.frm1.login.focus();
-			return false;
-		} else if (!checkPass.match(!"#$%&'()=~|`{+*}", [ 5, 244 ])) {
-			alert("記号を含む全ての半角文字で6文字以上255文字以下で入力して下さい。");
-			document.frm1.login.focus();
-			return false;
-		}
-	}
+
+
 </script>
 </head>
 <body>
-<h1>ログイン画面</h1>
-<form action="home.jsp" method="post" >
-<table>
-<tr><th>ユーザーID:</th><td><input type="text" name="userId" /><td></tr><br />
-<tr><th>パスワード:</th><td><input type="password" name="pass"></td></tr><br />
-<td><input type="submit" value="ログイン" /></td>
-</table>
-</form>
+<c:if test="${ not empty errorMessages }">
+	<div class="errorMessages">
+	<ul>
+	<c:forEach items="${errorMessages}" var="message">
+	<li><c:out value="${message}" /></li>
+	</c:forEach>
+	</ul>
+	</div>
+	<c:remove var="errorMessages" scope="session"/>
+	</c:if>
+<h1>ユーザーログイン</h1>
+	<form action="login" method="post"><br />
+	<table>
+	<tr><label for="loginId"><th>ログインID</th></label>
+	<td><input name="loginId" id="loginId"/></td></tr><br />
+
+	<tr><label for="password"><th>パスワード</th></label>
+	<td><input name="password" type="password" id="password"/></td></tr><br />
+
+<tr><td><input type="submit" value="ログイン" /><a href="./">戻る</a></td></tr> <br />
+
+		</table>
+	</form>
 </body>
 </html>
