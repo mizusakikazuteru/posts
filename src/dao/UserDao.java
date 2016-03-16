@@ -184,4 +184,27 @@ public class UserDao {
 			close(ps);
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+//	//支店名と部署・役職取得
+//	public User getUser(Connection connection, String branchId, String departmentId)
+//
+//			PreparedStatement ps = null;
+//			try {
+//				String sql = "SELECT * FROM users WHERE branch_id = ? AND department_id = ?";
+//				ps = connection.prepareStatement(sql);
+//				ps.setString(1, branchId);
+//				ps.setString(1, departmentId);
+//
+//				ResultSet rs = ps.executeQuery();
+//
+//			} catch (SQLException e) {
+//				throw new SQLRuntimeException(e);
+//			} finally {
+//				close(ps);
+//			}
+	}
+
+
+>>>>>>> fa586e6164f62a35f7c9b982f7fcb438862ecd50
