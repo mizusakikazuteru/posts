@@ -1,4 +1,5 @@
 package dao;
+
 //ユーザー情報関連のSQLを発行
 import static util.CloseableUtil.*;
 
@@ -19,32 +20,29 @@ public class UserDao {
 
 	}
 
-	public User getUser(Connection connection, String loginId,
-			String password) {
+	public User getUser(Connection connection, String loginId, String password) {
 
 		PreparedStatement ps = null;
 		try {
 			String sql = "SELECT * FROM users WHERE login_id = ? AND password = ?";
 
-
 			ps = connection.prepareStatement(sql);
 			ps.setString(1, loginId);
 			ps.setString(2, password);
 
-
 			ResultSet rs = ps.executeQuery();
 			List<User> userList = toUserList(rs);
-			//beansクラスのUser.javaから＜USER>に格納
+			// beansクラスのUser.javaから＜USER>に格納
 			if (userList.isEmpty() == true) {
-				//ユーザー情報が空の時NULL
+				// ユーザー情報が空の時NULL
 				return null;
 			} else if (3 <= userList.size()) {
-				//ユーザー情報が2個以上あるときエラー文
+				// ユーザー情報が2個以上あるときエラー文
 				throw new IllegalStateException("2 <= userList.size()");
 			} else {
 				return userList.get(0);
-				//ﾘﾀｰﾝでSERVICEクラスへ戻る
-				//get(0)で情報を取り出す。
+				// ﾘﾀｰﾝでSERVICEクラスへ戻る
+				// get(0)で情報を取り出す。
 			}
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
@@ -53,7 +51,8 @@ public class UserDao {
 			close(ps);
 		}
 	}
-	//ユーザ情報を結果セットからbeansのUser.javaに入れる（63行目～78行目まで）
+
+	// ユーザ情報を結果セットからbeansのUser.javaに入れる（63行目～78行目まで）
 	private List<User> toUserList(ResultSet rs) throws SQLException {
 
 		List<User> ret = new ArrayList<User>();
@@ -74,7 +73,6 @@ public class UserDao {
 				user.setBranchId(branchId);
 				user.setDepartmentId(departmentId);
 
-
 				ret.add(user);
 			}
 			return ret;
@@ -83,8 +81,7 @@ public class UserDao {
 		}
 	}
 
-
-	//ユーザー登録情報をDBへ格納
+	// ユーザー登録情報をDBへ格納
 	public void insert(Connection connection, User user) {
 
 		PreparedStatement ps = null;
@@ -112,7 +109,6 @@ public class UserDao {
 			ps.setString(4, user.getBranchId());
 			ps.setString(5, user.getDepartmentId());
 
-
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
@@ -120,7 +116,8 @@ public class UserDao {
 			close(ps);
 		}
 	}
-	//ユーザー情報をDBへ更新
+
+	// ユーザー情報をDBへ更新
 	public void update(Connection connection, User user) {
 
 		PreparedStatement ps = null;
@@ -133,7 +130,6 @@ public class UserDao {
 			sql.append(", name");
 			sql.append(", branch_id");
 			sql.append(", department_id");
-
 
 			sql.append(" WHERE");
 			sql.append(" id = ?");
@@ -159,7 +155,8 @@ public class UserDao {
 		}
 
 	}
-	//DBからIDを検索
+
+	// DBからIDを検索
 	public User getUser(Connection connection, int id) {
 
 		PreparedStatement ps = null;
@@ -184,27 +181,4 @@ public class UserDao {
 			close(ps);
 		}
 	}
-<<<<<<< HEAD
 }
-=======
-//	//支店名と部署・役職取得
-//	public User getUser(Connection connection, String branchId, String departmentId)
-//
-//			PreparedStatement ps = null;
-//			try {
-//				String sql = "SELECT * FROM users WHERE branch_id = ? AND department_id = ?";
-//				ps = connection.prepareStatement(sql);
-//				ps.setString(1, branchId);
-//				ps.setString(1, departmentId);
-//
-//				ResultSet rs = ps.executeQuery();
-//
-//			} catch (SQLException e) {
-//				throw new SQLRuntimeException(e);
-//			} finally {
-//				close(ps);
-//			}
-	}
-
-
->>>>>>> fa586e6164f62a35f7c9b982f7fcb438862ecd50

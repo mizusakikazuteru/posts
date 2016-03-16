@@ -10,12 +10,11 @@ import exception.SQLRuntimeException;
  * DB(コネクション関係)のユーティリティー
  */
 public class DBUtil {
-	//mysql設定
+	// mysql設定
 	private static final String DRIVER = "com.mysql.jdbc.Driver";
 	private static final String URL = "jdbc:mysql://localhost:3306/keijiban";
 	private static final String USER = "root";
 	private static final String PASSWORD = "root";
-
 
 	static {
 
@@ -26,12 +25,11 @@ public class DBUtil {
 		}
 	}
 
-	//*********** コネクションを取得します。***************
+	// *********** コネクションを取得します。***************
 	public static Connection getConnection() {
 
 		try {
-			Connection connection = DriverManager.getConnection(URL, USER,
-					PASSWORD);
+			Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
 
 			connection.setAutoCommit(false);
 
@@ -41,7 +39,7 @@ public class DBUtil {
 		}
 	}
 
-	//**************コミットします*********************
+	// **************コミットします*********************
 	public static void commit(Connection connection) {
 
 		try {

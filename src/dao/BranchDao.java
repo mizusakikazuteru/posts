@@ -14,7 +14,7 @@ import exception.SQLRuntimeException;
 
 //支店名をDBから取り出す
 public class BranchDao {
-	public static List<Branch> getBranches(Connection connection ) {
+	public static List<Branch> getBranches(Connection connection) {
 		PreparedStatement ps = null;
 
 		try {
@@ -32,18 +32,18 @@ public class BranchDao {
 	}
 
 	private static List<Branch> toBranchList(ResultSet rs) throws SQLException {
-	    List<Branch> ret = new ArrayList<Branch>();
-	    try {
-	      while (rs.next()) {
-	        Branch branch = new Branch();
-	        branch.setId(rs.getInt("id"));
-	        branch.setName(rs.getString("name"));
-ret.add(branch);
+		List<Branch> ret = new ArrayList<Branch>();
+		try {
+			while (rs.next()) {
+				Branch branch = new Branch();
+				branch.setId(rs.getInt("id"));
+				branch.setName(rs.getString("name"));
+				ret.add(branch);
 
-	      }
-	      return ret;
-	    } finally {
-	      close(rs);
-	    }
-	  }
+			}
+			return ret;
+		} finally {
+			close(rs);
+		}
+	}
 }

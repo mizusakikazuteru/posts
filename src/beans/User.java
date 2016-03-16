@@ -68,6 +68,7 @@ public class User implements Serializable {
 	public void setDepartmentId(String departmentId) {
 		this.departmentId = departmentId;
 	}
+
 	// ⑥アカウント
 	public boolean getIsActive() {
 		return isActive;

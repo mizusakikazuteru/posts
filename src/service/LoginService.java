@@ -20,14 +20,12 @@ public class LoginService {
 
 			UserDao userDao = new UserDao();
 			String encPassword = CipherUtil.encrypt(password);
-			//DAOはe-mailorIDとパスワードからユーザーの情報を取り出す。
-			User user = userDao
-					.getUser(connection, loginId, encPassword);
+			// DAOはe-mailorIDとパスワードからユーザーの情報を取り出す。
+			User user = userDao.getUser(connection, loginId, encPassword);
 
 			commit(connection);
 
-
-			return user;//LoginServletへ情報を渡す。
+			return user;// LoginServletへ情報を渡す。
 		} catch (RuntimeException e) {
 			rollback(connection);
 			throw e;

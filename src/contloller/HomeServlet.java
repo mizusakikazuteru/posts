@@ -10,15 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.User;
 
-
 @WebServlet(urlPatterns = { "/index.jsp" })
 
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req,
-			HttpServletResponse res) throws IOException, ServletException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
 		User user = (User) req.getSession().getAttribute("loginUser");
 		boolean isShowMessageForm;

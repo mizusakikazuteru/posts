@@ -1,4 +1,5 @@
 package contloller;
+
 //ログアウト
 import java.io.IOException;
 
@@ -14,9 +15,8 @@ public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req,
-			HttpServletResponse res) throws ServletException, IOException {
-		//セッションスコープ取得
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		// セッションスコープ取得
 		HttpSession session = req.getSession();
 
 		session.invalidate(); // セッションの無効化(破棄する）

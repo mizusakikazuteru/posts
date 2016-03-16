@@ -41,11 +41,10 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("loginUser", user);
 			res.sendRedirect("./");
 
-
 		} else {
 			// ユーザーがnullだったらリストに入れてエラー文を出す。
 			List<String> messages = new ArrayList<String>();
-			//System.out.println(messages);
+			// System.out.println(messages);
 			messages.add("ログインに失敗しました。");
 			session.setAttribute("errorMessages", messages);
 			// ここにerrorMessagesを記述する事でjspにも使用出来るようになる。

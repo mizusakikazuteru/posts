@@ -29,20 +29,20 @@
     </c:if>
     <form action="" method="post"><br />
     <table>
-    	<tr><label for="loginId"><th>ログインID</th></label>
+    <tr><th><label for="loginId">ログインID</label></th>
     	<td><input name="loginId" id="loginId"/></td></tr><br />
 ​
-    	<tr><label for="password"><th>パスワード</th></label>
+    <tr><th><label for="password">パスワード</label></th>
     	<td><input name="password" type="password" id="password"/></td></tr><br />
 ​
-    	<tr><label for="newpass"><th>確認用パスワード</th></label>
+    <tr><th><label for="newpass">確認用パスワード</label></th>
     	<td><input name="newpass" type="password" id="newpass"/></td></tr><br />
 ​
-    	<tr><label for="name"><th>氏名</th></label>
+    <tr><th><label for="name">氏名</label></th>
     	<td><input name="name"  id="name"/></td></tr><br />
 ​
     	<tr>
-        <label for="branchId"><th>支店名</th></label>
+        <th><label for="branchId">支店名</label></th>
       	<td>
           <select name="branchId">
             <c:forEach items="${branches}" var="branch">

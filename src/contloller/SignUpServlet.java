@@ -25,29 +25,26 @@ import service.UserService;
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	  @Override
-	  protected void doGet(HttpServletRequest req, HttpServletResponse res)
-	      throws IOException, ServletException {
-		//支店情報取得→jspへ表示
-	    BranchService branchService = new BranchService();
-	    List<Branch> branches = branchService.getBranches();
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		// 支店情報取得→jspへ表示
+		BranchService branchService = new BranchService();
+		List<Branch> branches = branchService.getBranches();
 
-	    req.setAttribute("branches", branches);
+		req.setAttribute("branches", branches);
 
-	    //部署・役職情報取得→jspへ表示
-	    DepartmentService departmentService = new DepartmentService();
-	    List<Department> departments = departmentService.getDepartments();
+		// 部署・役職情報取得→jspへ表示
+		DepartmentService departmentService = new DepartmentService();
+		List<Department> departments = departmentService.getDepartments();
 
-	    req.setAttribute("departments", departments);
-	    req.getRequestDispatcher("signup.jsp").forward(req, res);
+		req.setAttribute("departments", departments);
+		req.getRequestDispatcher("signup.jsp").forward(req, res);
 
-	  }
-
+	}
 
 	// doGetでsignup.jspへforwardする。
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-
 
 		List<String> messages = new ArrayList<String>();
 

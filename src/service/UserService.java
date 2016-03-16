@@ -1,4 +1,5 @@
 package service;
+
 import static util.CloseableUtil.*;
 import static util.DBUtil.*;
 
@@ -16,11 +17,9 @@ public class UserService {
 		Connection connection = null;
 		try {
 			connection = getConnection();
-			//登録する内容のパスワード暗号化(UtilクラスのCipherUtil,java)
+			// 登録する内容のパスワード暗号化(UtilクラスのCipherUtil,java)
 			String encPassword = CipherUtil.encrypt(user.getPassword());
 			user.setPassword(encPassword);
-
-
 
 			UserDao userDao = new UserDao();
 			userDao.insert(connection, user);
@@ -37,8 +36,7 @@ public class UserService {
 		}
 	}
 
-
-	//内容編集
+	// 内容編集
 	public void update(User user) {
 
 		Connection connection = null;
@@ -62,7 +60,8 @@ public class UserService {
 			close(connection);
 		}
 	}
-	//ユーザー情報を取得
+
+	// ユーザー情報を取得
 	public User getUser(int userId) {
 
 		Connection connection = null;
