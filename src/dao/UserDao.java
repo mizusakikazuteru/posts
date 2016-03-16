@@ -31,7 +31,6 @@ public class UserDao {
 			ps.setString(1, loginId);
 			ps.setString(2, password);
 
-			//System.out.println(ps.toString());
 
 			ResultSet rs = ps.executeQuery();
 			List<User> userList = toUserList(rs);
@@ -160,7 +159,7 @@ public class UserDao {
 		}
 
 	}
-
+	//DBからIDを検索
 	public User getUser(Connection connection, int id) {
 
 		PreparedStatement ps = null;
@@ -185,5 +184,4 @@ public class UserDao {
 			close(ps);
 		}
 	}
-
 }
