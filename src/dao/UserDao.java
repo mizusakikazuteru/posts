@@ -31,7 +31,6 @@ public class UserDao {
 			ps.setString(1, loginId);
 			ps.setString(2, password);
 
-			//System.out.println(ps.toString());
 
 			ResultSet rs = ps.executeQuery();
 			List<User> userList = toUserList(rs);
@@ -160,7 +159,7 @@ public class UserDao {
 		}
 
 	}
-
+	//DBからIDを検索
 	public User getUser(Connection connection, int id) {
 
 		PreparedStatement ps = null;
@@ -185,5 +184,23 @@ public class UserDao {
 			close(ps);
 		}
 	}
+//	//支店名と部署・役職取得
+//	public User getUser(Connection connection, String branchId, String departmentId)
+//
+//			PreparedStatement ps = null;
+//			try {
+//				String sql = "SELECT * FROM users WHERE branch_id = ? AND department_id = ?";
+//				ps = connection.prepareStatement(sql);
+//				ps.setString(1, branchId);
+//				ps.setString(1, departmentId);
+//
+//				ResultSet rs = ps.executeQuery();
+//
+//			} catch (SQLException e) {
+//				throw new SQLRuntimeException(e);
+//			} finally {
+//				close(ps);
+//			}
+	}
 
-}
+

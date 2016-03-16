@@ -21,13 +21,13 @@
 </head>
 <body>
 
-<p>お疲れ様です<c:out value="${loginUser}" />さん</p>
-<c:if test="${ empty loginUser }">
+<p>お疲れ様です<c:out value="${loginUser .name}" />さん</p>
+<c:if test="${ empty loginUser .name }">
 <a href="login">ログイン</a>
 </c:if>
 <center>
 <h1>ホーム画面</h1>
-<c:if test="${ not empty loginUser }">
+<c:if test="${ not empty loginUser .name }">
 <ul id="menu">
 <li><a href="post">新規投稿</a></li>
 <li><a href="management">ユーザー管理</a></li>

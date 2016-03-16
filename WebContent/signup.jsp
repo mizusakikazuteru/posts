@@ -27,7 +27,7 @@
 	</div>
 	<c:remove var="errorMessages" scope="session"/>
 </c:if>
-<form action="management.jsp" method="post"><br />
+<form action="" method="post"><br />
 <table>
 	<tr><label for="loginId"><th>ログインID</th></label>
 	<td><input name="loginId" id="loginId"/></td></tr><br />

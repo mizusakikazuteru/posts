@@ -32,6 +32,7 @@ public class SignUpServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req,
 			HttpServletResponse res) throws IOException, ServletException {
 
+
 		List<String> messages = new ArrayList<String>();
 
 		HttpSession session = req.getSession();
