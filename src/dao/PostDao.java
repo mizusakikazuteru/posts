@@ -70,7 +70,8 @@ public class PostDao {
 
 			ps.setString(1, post.getSubject());
 			ps.setString(2, post.getText());
-			ps.setString(3, post.getDateCategory());
+			ps.setString(3, post.getCategory());
+			ps.setDate(4, post.getCreatedAt());
 			ps.setString(5, post.getUserId());
 
 			ps.executeUpdate();
