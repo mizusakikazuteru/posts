@@ -41,8 +41,8 @@ public class PostServlet extends HttpServlet {
 			post.setSubject(req.getParameter("subject"));
 			post.setText(req.getParameter("text"));
 			post.setCategory(req.getParameter("category"));
-			post.setCreatedAt(req.getParameter("createdAt"));
-			post.setUserId(req.getParameter("userId"));
+			//post.setCreatedAt(req.getParameter("createdAt"));
+			//post.setUserId(req.getParameter("userId"));
 
 
 			new PostService().register(post);

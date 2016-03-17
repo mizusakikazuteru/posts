@@ -17,7 +17,7 @@ public class PostService {
 		try {
 			connection = getConnection();
 
-			PostDao PostDao = new PostDao();
+			PostDao postDao = new PostDao();
 			dao.PostDao.insert(connection, post);
 
 			commit(connection);
