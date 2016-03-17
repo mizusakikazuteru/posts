@@ -16,33 +16,25 @@
    td{border:1px black solid;}
 </style>
 <script type="text/javascript">
-	function frmCheck(){
-		if(document.frm1.title.value ==""){
-			alert("件名を入力して下さい。");
-			document.frm1.title.focus();
-			return false;
-		}else if(document.frm1.text.value == ""){
-			alert("本文を入力して下さい。");
-			document.frm1.text.focus();
-			return false;
-		}else if(document.frm1.category.value ==""){
-			alert("カテゴリーを入力して下さい。");
-			document.frm1.category.focus();
-			return false;
-		}
-	}
+
 </script>
 </head>
 <body>
 <center>
 <h1>投稿画面</h1>
-<form id="frm1"name="frm1"method="post"action="#" onsubmit="return frmCheck()">
+<form action="" method="post"><br />
 <table>
-<tr><th>件名</th><td><input type="text" name="title" maxlength="50" size="90" /></td></tr>
-<tr><th>本文</th><td><textarea name="messages" cols="70" rows="20" /></textarea></td></tr>
-<tr><th>カテゴリー</th><td><input type="text" name="category" maxlength="10" size="20" /></td></tr>
-<tr><th>登録日時</th><td><input type="text" name="created_at" maxlength="10" size="20" /></td></tr>
-<tr><th>登録者</th><td><input type="text" name="created_at" maxlength="10" size="20" /></td></tr>
+    <tr><th><label for="subject">件名</label></th>
+    	<td><input name="subject" id="subject" maxlength="20" size="50"/></td></tr><br />
+​
+    <tr><th><label for="text">本文</label></th>
+    	<td><textarea name="text" type="text" id="text" cols="70" rows="20"/></textarea></td></tr><br />
+
+    <tr><th><label for="category">カテゴリー</label></th>
+    	<td><input name="category" type="category" id="category" maxlength="20" size="50"/></td></tr><br />
+​
+<tr><td colspan="2" id="button"><input type="submit" value="新規投稿" />
+<input type="reset" value="消去" /></td></tr>
 <tr><td colspan="2" id="button"><a href="#" onclick="window.history.back()">ホームに戻る</a></td></tr>
 </table>
 

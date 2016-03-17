@@ -26,7 +26,8 @@ public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws IOException, ServletException {
 		// 支店情報取得→jspへ表示
 		BranchService branchService = new BranchService();
 		List<Branch> branches = branchService.getBranches();
@@ -44,7 +45,8 @@ public class SignUpServlet extends HttpServlet {
 
 	// doGetでsignup.jspへforwardする。
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res)
+			throws IOException, ServletException {
 
 		List<String> messages = new ArrayList<String>();
 

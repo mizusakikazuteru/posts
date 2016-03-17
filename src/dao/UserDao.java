@@ -19,7 +19,7 @@ public class UserDao {
 	public UserDao() {
 
 	}
-
+	//ログイン情報を取得
 	public User getUser(Connection connection, String loginId, String password) {
 
 		PreparedStatement ps = null;
