@@ -37,7 +37,7 @@ public class PostServlet extends HttpServlet {
 		if (isValid(req, messages) == true) {
 
 			Post post = new Post();
-あああああああああああああああああああああ
+あああ
 			post.setSubject(req.getParameter("subject"));
 			post.setText(req.getParameter("text"));
 			post.setCategory(req.getParameter("category"));
