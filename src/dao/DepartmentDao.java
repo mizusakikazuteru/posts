@@ -15,6 +15,7 @@ import exception.SQLRuntimeException;
 public class DepartmentDao {
 
 	public static List<Department> getDepartments(Connection connection) {
+
 		PreparedStatement ps = null;
 
 		try {
@@ -32,7 +33,9 @@ public class DepartmentDao {
 	}
 
 	private static List<Department> toDepartmentList(ResultSet rs) throws SQLException {
+
 		List<Department> ret = new ArrayList<Department>();
+
 		try {
 			while (rs.next()) {
 				Department department = new Department();

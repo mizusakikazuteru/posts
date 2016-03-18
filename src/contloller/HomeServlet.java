@@ -19,7 +19,9 @@ public class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
 		User user = (User) req.getSession().getAttribute("loginUser");
+
 		boolean isShowMessageForm;
+
 		if (user != null) {
 			isShowMessageForm = true;
 		} else {

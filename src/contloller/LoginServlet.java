@@ -31,7 +31,9 @@ public class LoginServlet extends HttpServlet {
 		String password = req.getParameter("password");
 
 		LoginService loginService = new LoginService();
+
 		User user = loginService.login(loginId, password);
+
 		// ログイン情報を保持する為、セッションスタート
 		HttpSession session = req.getSession();
 		// ユーザーがnullかチェックする

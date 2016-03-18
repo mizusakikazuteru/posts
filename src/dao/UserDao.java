@@ -23,6 +23,7 @@ public class UserDao {
 	public User getUser(Connection connection, String loginId, String password) {
 
 		PreparedStatement ps = null;
+
 		try {
 			String sql = "SELECT * FROM users WHERE login_id = ? AND password = ?";
 
@@ -31,6 +32,7 @@ public class UserDao {
 			ps.setString(2, password);
 
 			ResultSet rs = ps.executeQuery();
+
 			List<User> userList = toUserList(rs);
 			// beansクラスのUser.javaから＜USER>に格納
 			if (userList.isEmpty() == true) {
@@ -56,6 +58,7 @@ public class UserDao {
 	private List<User> toUserList(ResultSet rs) throws SQLException {
 
 		List<User> ret = new ArrayList<User>();
+
 		try {
 			while (rs.next()) {
 				int id = rs.getInt("id");
@@ -160,6 +163,7 @@ public class UserDao {
 	public User getUser(Connection connection, int id) {
 
 		PreparedStatement ps = null;
+
 		try {
 			String sql = "SELECT * FROM users WHERE id = ?";
 

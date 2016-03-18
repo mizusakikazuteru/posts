@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,12 +31,13 @@ public class PostServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
-		List<String> messages = new ArrayList<String>();
+		List<String> posts = new ArrayList<String>();
 
 		HttpSession session = req.getSession();
-		if (isValid(req, messages) == true) {
+		if (isValid(req, posts) == true) {
 
 			User user = (User) session.getAttribute("loginUser");
+
 			Post post = new Post();
 
 			post.setSubject(req.getParameter("subject"));
@@ -47,35 +47,34 @@ public class PostServlet extends HttpServlet {
 
 
 			new PostService().register(post);
-			// フォワード
-			RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");
-			dispatcher.forward(req, res);
 
-		} else {
-			session.setAttribute("errorMessages", messages);
-			res.sendRedirect("post");
+            res.sendRedirect("home");
+        } else {
+        	session.setAttribute("errorMessages", posts);
+        	res.sendRedirect("post");
+//            RequestDispatcher dispatcher = req.getRequestDispatcher("post");
+//            dispatcher.forward(req, res);
+
 		}
 	}
 
 	// isValid メソッド (SQLServerConnection) バリデーション処理
 	// SQLServerConnection オブジェクトが閉じられておらず、有効であるかどうか。
-	private boolean isValid(HttpServletRequest req, List<String> messages) {
+	private boolean isValid(HttpServletRequest req, List<String> posts) {
 		String Subject = req.getParameter("subject");
 		String Text = req.getParameter("text");
 		String Category = req.getParameter("category");
 
 		if (StringUtils.isEmpty(Subject) == true) {
-			messages.add("件名を入力してください");
+			posts.add("件名を入力してください");
 		}
 		if (StringUtils.isEmpty(Text) == true) {
-			messages.add("本文を入力してください");
+			posts.add("本文を入力してください");
 		}
 		if (StringUtils.isEmpty(Category) == true) {
-			messages.add("カテゴリーを入力してください");
+			posts.add("カテゴリーを入力してください");
 		}
-		//if (StringUtils.isEmpty(str)y)
-
-		if (messages.size() == 0) {
+		if (posts.size() == 0) {
 			return true;
 		} else {
 			return false;
