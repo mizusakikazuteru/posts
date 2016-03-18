@@ -18,7 +18,7 @@ public class PostService {
 			connection = getConnection();
 
 			PostDao postDao = new PostDao();
-			dao.PostDao.insert(connection, post);
+			postDao.insert(connection, post);
 
 			commit(connection);
 		} catch (RuntimeException e) {

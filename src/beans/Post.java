@@ -1,7 +1,9 @@
 package beans;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+
+
 
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -11,7 +13,7 @@ private String subject;
 private String text;
 private String category;
 private Date createdAt;
-private String userId;
+private int userId;
 
 
 // ①ID
@@ -41,7 +43,7 @@ public void setText(String text) {
 	this.text = text;
 }
 
-// ③カテゴリー
+// ④カテゴリー
 public String getCategory() {
 	return category;
 }
@@ -60,11 +62,11 @@ public void setCreatedAt(Date createdAt) {
 }
 
 // ⑤登録者
-public String getUserId() {
+public int getUserId() {
 	return userId;
 }
 
-public void setUserId(String userId) {
+public void setUserId(int userId) {
 	this.userId = userId;
 }
 
