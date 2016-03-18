@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +26,9 @@ public class PostServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
-		req.getRequestDispatcher("post.jsp").forward(req, res);
+
+			req.getRequestDispatcher("post.jsp").forward(req, res);
+
 	}
 
 	@Override
@@ -34,6 +37,7 @@ public class PostServlet extends HttpServlet {
 		List<String> posts = new ArrayList<String>();
 
 		HttpSession session = req.getSession();
+
 		if (isValid(req, posts) == true) {
 
 			User user = (User) session.getAttribute("loginUser");
@@ -51,9 +55,8 @@ public class PostServlet extends HttpServlet {
             res.sendRedirect("home");
         } else {
         	session.setAttribute("errorMessages", posts);
-        	res.sendRedirect("post");
-//            RequestDispatcher dispatcher = req.getRequestDispatcher("post");
-//            dispatcher.forward(req, res);
+            RequestDispatcher dispatcher = req.getRequestDispatcher("post.jsp");
+            dispatcher.forward(req, res);
 
 		}
 	}
