@@ -56,6 +56,30 @@ li {
 		<c:if test="${ not empty loginUser .name }">
 			<ul id="menu">
 				<li><a href="post">新規投稿</a></li>
+
+
+
+
+
+
+
+
+
+
+
+				<p>
+		お疲れ様です
+		<c:out value="${loginUser .name}" />
+		さん
+	</p>
+	<c:if test="${ empty loginUser .name }">
+		<a href="login">ログイン</a>
+	</c:if>
+
+
+
+
+
 				<li><a href="management">ユーザー管理</a></li>
 				<li><a href="logout">ログアウト</a></li>
 			</ul>

@@ -11,14 +11,14 @@ import dao.PostDao;
 public class PostService {
 
 
-	public void register(Post post) {
+	public void register(Post posts) {
 
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
 			PostDao postDao = new PostDao();
-			postDao.insert(connection, post);
+			postDao.insert(connection, posts);
 
 			commit(connection);
 		} catch (RuntimeException e) {

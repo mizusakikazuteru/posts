@@ -52,14 +52,18 @@ public class PostServlet extends HttpServlet {
 
 			new PostService().register(post);
 
-            res.sendRedirect("home");
+            res.sendRedirect("home.jsp");
         } else {
         	session.setAttribute("errorMessages", posts);
             RequestDispatcher dispatcher = req.getRequestDispatcher("post.jsp");
             dispatcher.forward(req, res);
 
 		}
+
 	}
+
+
+
 
 	// isValid メソッド (SQLServerConnection) バリデーション処理
 	// SQLServerConnection オブジェクトが閉じられておらず、有効であるかどうか。
@@ -83,5 +87,6 @@ public class PostServlet extends HttpServlet {
 			return false;
 		}
 	}
+
 
 }

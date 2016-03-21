@@ -16,6 +16,7 @@
 body {
 	textalign: center;
 	background: url("login.png") no-repeat;
+	fontcolor:blue;
 }
 </style>
 <script type="text/javascript">
