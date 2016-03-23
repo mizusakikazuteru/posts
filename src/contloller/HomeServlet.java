@@ -18,7 +18,7 @@ import beans.User;
 import service.ManagementService;
 import service.UserService;
 
-@WebServlet(urlPatterns = { "/index.jsp" })
+@WebServlet(urlPatterns = { "/home" })
 
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -48,6 +48,10 @@ public class HomeServlet extends HttpServlet {
 			session.setAttribute("errorMessages", messages);
 			res.sendRedirect("home.jsp");
 		}
+
+
+
+
 	}
 
 	@Override
@@ -66,7 +70,7 @@ public class HomeServlet extends HttpServlet {
 
 		new UserService().register(user);
 		// フォワード
-		RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/Home");
 		dispatcher.forward(req, res);
 
 	}
