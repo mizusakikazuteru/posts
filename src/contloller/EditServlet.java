@@ -77,7 +77,7 @@ public class EditServlet extends HttpServlet {
 			// loginUser→変更前の情報 editUserは変更後の情報
 			session.removeAttribute("editUser");
 
-			res.sendRedirect("./");
+			res.sendRedirect("management");
 		} else {
 			session.setAttribute("errorMessages", messages);
 			res.sendRedirect("edit");

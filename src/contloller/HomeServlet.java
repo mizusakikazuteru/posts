@@ -12,10 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.Branch;
 import beans.Post;
 import beans.User;
-import service.ManagementService;
 import service.UserService;
 
 @WebServlet(urlPatterns = { "/home" })
@@ -24,33 +22,34 @@ public class HomeServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws IOException, ServletException {
-
-		User user = (User) req.getSession().getAttribute("loginUser");
-		// 支店コード１/支店名本社ならtrue
-		HttpSession session = req.getSession();
-
-		int branchId = (int) session.getAttribute("branchId");
-
-		ManagementService manegementService = new ManagementService();
-
-		Branch id = manegementService.branch(branchId);
-
-		if (branchId == 1) {
-
-			session.setAttribute("branch", branchId);
-			res.sendRedirect("/management");
-		} else {
-
-			List<String> messages = new ArrayList<String>();
-			messages.add("管理者権限がありません。");
-			session.setAttribute("errorMessages", messages);
-			res.sendRedirect("/home");
-		}
-
-		req.getRequestDispatcher("home.jsp").forward(req, res);
-
+	        throws IOException, ServletException {
+	    req.getRequestDispatcher("home.jsp").forward(req, res);
 	}
+//		User user = (User) req.getSession().getAttribute("loginUser");
+//		// 支店コード１/支店名本社ならtrue
+//		HttpSession session = req.getSession();
+//
+//		int branchId = (int) session.getAttribute("branchId");
+//
+//		ManagementService manegementService = new ManagementService();
+//
+//		Branch id = manegementService.branch(branchId);
+//
+//		if (branchId == 1) {
+//
+//			session.setAttribute("branch", branchId);
+//			res.sendRedirect("management.jsp");
+//		} else {
+//
+//			List<String> messages = new ArrayList<String>();
+//			messages.add("管理者権限がありません。");
+//			session.setAttribute("errorMessages", messages);
+//			res.sendRedirect("/home");
+//		}
+//
+//		req.getRequestDispatcher("home.jsp").forward(req, res);
+//
+//	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -69,8 +68,8 @@ public class HomeServlet extends HttpServlet {
 		new UserService().register(user);
 
 
-		// フォワード
-		RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");		dispatcher.forward(req, res);
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/home");
 
 	}
 
