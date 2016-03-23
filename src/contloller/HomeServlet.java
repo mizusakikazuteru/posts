@@ -70,7 +70,7 @@ public class HomeServlet extends HttpServlet {
 
 		new UserService().register(user);
 		// フォワード
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/Home");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/home");
 		dispatcher.forward(req, res);
 
 	}
