@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -67,10 +68,9 @@ public class HomeServlet extends HttpServlet {
 
 		new UserService().register(user);
 
-		 res.sendRedirect("/home");
-//		// フォワード
-//		RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");
-//		dispatcher.forward(req, res);
+
+		// フォワード
+		RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");		dispatcher.forward(req, res);
 
 	}
 
