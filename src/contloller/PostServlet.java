@@ -27,7 +27,7 @@ public class PostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
 
-			req.getRequestDispatcher("post.jsp").forward(req, res);
+			req.getRequestDispatcher("/post").forward(req, res);
 
 	}
 
@@ -52,7 +52,7 @@ public class PostServlet extends HttpServlet {
 
 			new PostService().register(post);
 
-            res.sendRedirect("home.jsp");
+            res.sendRedirect("");
         } else {
         	session.setAttribute("errorMessages", posts);
             RequestDispatcher dispatcher = req.getRequestDispatcher("post.jsp");
