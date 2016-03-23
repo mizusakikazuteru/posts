@@ -19,13 +19,14 @@ import service.ManagementService;
 import service.UserService;
 
 @WebServlet(urlPatterns = { "/home" })
-
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		//支店コード１(本社ならtrue
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+			throws IOException, ServletException {
+
+		req.getRequestDispatcher("/home").forward(req, res);
 
 		User user = (User) req.getSession().getAttribute("loginUser");
 		// 支店コード１/支店名本社ならtrue
@@ -40,13 +41,13 @@ public class HomeServlet extends HttpServlet {
 		if (branchId == 1) {
 
 			session.setAttribute("branch", branchId);
-			res.sendRedirect("management.jsp");
+			res.sendRedirect("/management");
 		} else {
 
 			List<String> messages = new ArrayList<String>();
 			messages.add("管理者権限がありません。");
 			session.setAttribute("errorMessages", messages);
-			res.sendRedirect("home.jsp");
+			res.sendRedirect("/home");
 		}
 
 

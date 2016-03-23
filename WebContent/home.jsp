@@ -62,44 +62,13 @@ li {
 
 
 	<c:out value="${branch .id}" />
-	<li><a href="Management">ユーザー管理</a></li>
+	<li><a href="management">ユーザー管理</a></li>
 
 				<li><a href="logout">ログアウト</a></li>
 			</ul>
 		</c:if>
 		<form action="home" method="post">
-			<table>
-				<tr>
-					<th>件名</th>
-					<td><input type="text" name="title" maxlength="50" size="90" /></td>
-				</tr>
-				<tr>
-					<th>本文</th>
-					<td><textarea name="messages" cols="70" rows="20" /></textarea></td>
-				</tr>
-				<tr>
-					<th>カテゴリー</th>
-					<td><input type="text" name="category" maxlength="10"
-						size="10" />&nbsp;&nbsp;&nbsp;&nbsp; <select><option>期間指定</option></select></td>
-				</tr>
-				<tr>
-					<th>登録日時</th>
-					<td><input type="text" name="created_at" maxlength="10"
-						size="20" />&nbsp;&nbsp;&nbsp;&nbsp; <select><option>期間指定</option></select></td>
-				</tr>
-				<tr>
-					<th>登録者</th>
-					<td><input type="text" name="created_at" maxlength="10"
-						size="20" /></td>
-				</tr>
-				<tr>
-					<th>コメント</th>
-					<td><textarea name="messages" cols="70" rows="20" /></textarea></td>
-				</tr>
-				<tr>
-					<td colspan="2" id="button"><a href="./">ホームに戻る</a></td>
-				</tr>
-			</table>
+
 
 		</form>
 	</center>

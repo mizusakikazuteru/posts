@@ -52,7 +52,7 @@ public class PostServlet extends HttpServlet {
 
 			new PostService().register(post);
 
-            res.sendRedirect("");
+            res.sendRedirect("/home");
         } else {
         	session.setAttribute("errorMessages", posts);
             RequestDispatcher dispatcher = req.getRequestDispatcher("post.jsp");

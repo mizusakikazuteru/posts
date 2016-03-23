@@ -1,6 +1,7 @@
 package contloller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Management
  */
-@WebServlet("/Management")
-public class Management extends HttpServlet {
+@WebServlet("/management")
+public class ManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Management() {
+    public ManagementServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

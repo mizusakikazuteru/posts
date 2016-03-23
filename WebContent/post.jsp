@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@page isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -54,27 +53,10 @@ td {
 		</c:if>
 		<form action="" method="post">
 			<br />
-
-	<!--
 			<table>
-			<c:forEach items="${messages}" var="message">
-		<div class="message-icon">
-			<div class="icon"><img src="./icon?user_id=${message.userId}" width="50" height="50"  /></div>
-			<div class="message">
-				<div class="account-name">
-					<span class="account"><c:out value="${message.account}" /></span>
-					<span class="name"><c:out value="${message.name}" /></span>
-				</div>
-				<div class="text"><c:out value="${message.text}" /></div>
-				<div class="date"><fmt:formatDate value="${message.insertDate}" pattern="yyyy/MM/dd HH:mm:ss" /></div>
-			</div>
-		</div>
-	</c:forEach>
-	-->
-
 				<tr>
 					<th><label for="subject">件名</label></th>
-					<td><input name="subject" id="subject" value="${post.subject}" maxlength="20"
+					<td><input name="subject" id="subject" maxlength="20"
 						size="50" /></td>
 				</tr>
 				<br /> ​

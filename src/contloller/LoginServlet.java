@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 
 			// リダイレクト
 			session.setAttribute("loginUser", user);
-			res.sendRedirect("home.jsp");
+			res.sendRedirect("home");
 
 		} else {
 			// ユーザーがnullだったらリストに入れてエラー文を出す。
