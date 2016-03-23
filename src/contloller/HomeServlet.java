@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,8 +24,6 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
-
-		req.getRequestDispatcher("/home").forward(req, res);
 
 		User user = (User) req.getSession().getAttribute("loginUser");
 		// 支店コード１/支店名本社ならtrue
@@ -50,8 +47,7 @@ public class HomeServlet extends HttpServlet {
 			res.sendRedirect("/home");
 		}
 
-
-
+		req.getRequestDispatcher("home.jsp").forward(req, res);
 
 	}
 
@@ -70,9 +66,11 @@ public class HomeServlet extends HttpServlet {
 		post.setUserId(user.getId());
 
 		new UserService().register(user);
-		// フォワード
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/home");
-		dispatcher.forward(req, res);
+
+		 res.sendRedirect("/home");
+//		// フォワード
+//		RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");
+//		dispatcher.forward(req, res);
 
 	}
 
