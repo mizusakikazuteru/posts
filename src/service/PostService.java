@@ -4,7 +4,6 @@ import static util.CloseableUtil.*;
 import static util.DBUtil.*;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
 
 import beans.Post;
@@ -37,14 +36,12 @@ public class PostService {
 		try {
 			connection = getConnection();
 
-			PostDao postDao = new PostDao();
-
-			return postDao.toPostList(connection);
+			//PostDao postDao = new PostDao();
+			return PostDao.toPostList(connection);
+			//return postDao.toPostList(connection);
 		}
-		catch(SQLException e) {
-			System.out.println("SQLダメ");
-		} catch (Error e) {
-			System.out.println("Errorダメ");
+		catch (Error e) {
+			System.out.print("エラーが発生しました");
 		} finally {
 			close(connection);
 

@@ -31,7 +31,7 @@ public class SignUpServlet extends HttpServlet {
 		// 支店情報取得→jspへ表示
 		BranchService branchService = new BranchService();
 		List<Branch> branches = branchService.getBranches();
-		System.out.println(branches.size());
+
 
 		req.setAttribute("branches", branches);
 

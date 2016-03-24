@@ -11,7 +11,7 @@ public class Post implements Serializable {
 	private String text;
 	private String category;
 	private Date createdAt;
-	private int userId;
+	private String userId;
 
 	// ①ID
 	public int getId() {
@@ -59,11 +59,11 @@ public class Post implements Serializable {
 	}
 
 	// ⑤登録者
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

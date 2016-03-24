@@ -16,48 +16,45 @@ import exception.SQLRuntimeException;
 public class PostDao {
 
 	// 投稿情報を結果セットからbeansのpost.javaに入れる
-	public List<Post> toPostList(Connection con) throws SQLException {
-
-		List<Post> ret = new ArrayList<Post>();
+	public static List<Post> toPostList(Connection con) {
+		//List<Post> ret = new ArrayList<Post>();
 
 		PreparedStatement ps = null;
-		ResultSet rs = null;
+		//ResultSet rs = null;
 		try {
-			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT * FROM postings");
+			String sql = "SELECT * FROM postings";
 
-			ps = con.prepareStatement(sql.toString());
+			ps = con.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
 
 			rs = ps.executeQuery();
-			System.out.println(ps);
-			System.out.println(rs);
+			return postList(rs);
 
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {
 			close(ps);
 		}
+	}
+		private static List<Post> postList(ResultSet rs) throws SQLException {
 
-		try {
-			System.out.println("うううう");
-			int i = 1;
-			System.out.println(rs.next());
+			List<Post> ret = new ArrayList<Post>();
+
+			try {
+
+
 			while (rs.next()) {
-				System.out.println(i);
-				i++;
-				System.out.println("ええええ");
-
-				int id = rs.getInt("id");
-				String Subject = rs.getString("subject");
-
-				System.out.println(Subject);
-
-				String Text = rs.getString("text");
-				String Category = rs.getString("category");
-				Date createdAt = rs.getDate("created_at");
-				int UserId = rs.getInt("userId");
 
 				Post post = new Post();
+				int id = rs.getInt("id");
+				String Subject = rs.getString("subject");
+				String Text = rs.getString("text");
+				String UserId = rs.getString("user_id");
+				String Category = rs.getString("category");
+				Date createdAt = rs.getDate("created_at");
+
+
 				post.setId(id);
 				post.setSubject(Subject);
 				post.setText(Text);
@@ -68,7 +65,7 @@ public class PostDao {
 				ret.add(post);
 
 			}
-			System.out.println(ret);
+
 			return ret;
 		} finally {
 			close(rs);
@@ -98,7 +95,7 @@ public class PostDao {
 			ps.setString(1, post.getSubject());
 			ps.setString(2, post.getText());
 			ps.setString(3, post.getCategory());
-			ps.setInt(4, post.getUserId());
+			ps.setString(4, post.getUserId());
 
 			ps.executeUpdate();
 

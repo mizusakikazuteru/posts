@@ -49,7 +49,7 @@ public class HomeServlet extends HttpServlet {
 		post.setSubject(req.getParameter("subject"));
 		post.setText(req.getParameter("text"));
 		post.setCategory(req.getParameter("category"));
-		post.setUserId(user.getId());
+		post.setUserId(req.getParameter("userId"));
 
 		new UserService().register(user);
 		// フォワード

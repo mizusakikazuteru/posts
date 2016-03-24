@@ -81,7 +81,7 @@ li {
 	<c:out value="${postList }" />
 	<c:forEach items="${postList}" var="post">
 		件名
-		<c:out value="${post.subject}" />
+
 
 	</c:forEach>
 
