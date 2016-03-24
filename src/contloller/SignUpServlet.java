@@ -31,6 +31,7 @@ public class SignUpServlet extends HttpServlet {
 		// 支店情報取得→jspへ表示
 		BranchService branchService = new BranchService();
 		List<Branch> branches = branchService.getBranches();
+		System.out.println(branches.size());
 
 		req.setAttribute("branches", branches);
 
@@ -62,7 +63,7 @@ public class SignUpServlet extends HttpServlet {
 
 			new UserService().register(user);
 			// フォワード
-			RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");
+			RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
 			dispatcher.forward(req, res);
 
 		} else {

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@page isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -56,10 +57,16 @@ li {
 		<c:if test="${ not empty loginUser .name }">
 			<ul id="menu">
 				<li><a href="post">新規投稿</a></li>
-
-
-
-
+<c:if test="${ not empty errorMessages }">
+		<div class="errorMessages">
+			<ul>
+				<c:forEach items="${errorMessages}" var="message">
+					<li><c:out value="${message}" /></li>
+				</c:forEach>
+			</ul>
+		</div>
+		<c:remove var="errorMessages" scope="session" />
+	</c:if>
 
 	<c:out value="${branch .id}" />
 	<li><a href="management">ユーザー管理</a></li>
@@ -67,9 +74,20 @@ li {
 				<li><a href="logout">ログアウト</a></li>
 			</ul>
 		</c:if>
+
+
+
+
+	<c:out value="${postList }" />
+	<c:forEach items="${postList}" var="post">
+		件名
+		<c:out value="${post.subject}" />
+
+	</c:forEach>
+
+
+
 		<form action="home" method="post">
-
-
 		</form>
 	</center>
 </body>

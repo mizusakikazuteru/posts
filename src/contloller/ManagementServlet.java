@@ -1,29 +1,52 @@
 package contloller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import beans.User;
 
 @WebServlet("/management")
 public class ManagementServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse res)
-			throws ServletException, IOException {
+		User user = (User) req.getSession().getAttribute("loginUser");
+		// 支店コード１/支店名本社ならtrue
+		HttpSession session = req.getSession();
 
-		req.getRequestDispatcher("management.jsp").forward(req, res);
+		String branchId = user.getBranchId();
+
+		// ManagementService manegementService = new ManagementService();
+
+		// Branch id = manegementService.branch(branchId);
+
+		if ("1".equals(branchId)) {
+
+			session.setAttribute("branch", branchId);
+			res.sendRedirect("management.jsp");
+		} else {
+
+			List<String> messages = new ArrayList<String>();
+			messages.add("管理者権限がありません。");
+			session.setAttribute("errorMessages", messages);
+			res.sendRedirect("home");
+		}
+
 
 
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+		System.out.println("ああああ");
 	}
 
 }

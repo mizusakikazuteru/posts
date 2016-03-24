@@ -41,6 +41,7 @@ public class LoginServlet extends HttpServlet {
 
 			// リダイレクト
 			session.setAttribute("loginUser", user);
+
 			res.sendRedirect("home");
 
 		} else {

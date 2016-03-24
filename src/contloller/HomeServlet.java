@@ -14,42 +14,28 @@ import javax.servlet.http.HttpSession;
 
 import beans.Post;
 import beans.User;
+import service.PostService;
 import service.UserService;
 
 @WebServlet(urlPatterns = { "/home" })
+
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse res)
-	        throws IOException, ServletException {
-	    req.getRequestDispatcher("home.jsp").forward(req, res);
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+
+		PostService post = new PostService();
+
+		List<Post> postList = post.getPosts();
+
+
+		req.setAttribute("postList", postList);
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");
+		dispatcher.forward(req, res);
+
 	}
-//		User user = (User) req.getSession().getAttribute("loginUser");
-//		// 支店コード１/支店名本社ならtrue
-//		HttpSession session = req.getSession();
-//
-//		int branchId = (int) session.getAttribute("branchId");
-//
-//		ManagementService manegementService = new ManagementService();
-//
-//		Branch id = manegementService.branch(branchId);
-//
-//		if (branchId == 1) {
-//
-//			session.setAttribute("branch", branchId);
-//			res.sendRedirect("management.jsp");
-//		} else {
-//
-//			List<String> messages = new ArrayList<String>();
-//			messages.add("管理者権限がありません。");
-//			session.setAttribute("errorMessages", messages);
-//			res.sendRedirect("/home");
-//		}
-//
-//		req.getRequestDispatcher("home.jsp").forward(req, res);
-//
-//	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
@@ -66,12 +52,10 @@ public class HomeServlet extends HttpServlet {
 		post.setUserId(user.getId());
 
 		new UserService().register(user);
-
-
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/home");
+		// フォワード
+		RequestDispatcher dispatcher = req.getRequestDispatcher("home");
+		dispatcher.forward(req, res);
 
 	}
 
 }
-

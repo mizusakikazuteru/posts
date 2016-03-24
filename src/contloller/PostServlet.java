@@ -27,8 +27,8 @@ public class PostServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
 
-			req.getRequestDispatcher("/post").forward(req, res);
-
+			RequestDispatcher dispatcher = req.getRequestDispatcher("post.jsp");
+			dispatcher.forward(req, res);
 	}
 
 	@Override
