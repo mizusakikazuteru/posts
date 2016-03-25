@@ -12,6 +12,7 @@ public class Post implements Serializable {
 	private String category;
 	private Timestamp createdAt;
 	private String userId;
+	private String name;
 
 	// ①ID
 	public int getId() {
@@ -58,7 +59,7 @@ public class Post implements Serializable {
 		this.createdAt = createdAt;
 	}
 
-	// ⑤登録者
+	// ⑤登録者ID
 	public String getUserId() {
 		return userId;
 	}
@@ -67,4 +68,13 @@ public class Post implements Serializable {
 		this.userId = userId;
 	}
 
+	// ⑥登録者（名前）
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+
+	}
 }

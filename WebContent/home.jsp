@@ -24,14 +24,23 @@
 
 	<c:forEach  var="post" items="${postList}">
 	<table>
-	<tr><th width="40%">件名:<c:out value="${post.subject}" /></th>
-	<th width="25%">投稿者:<c:out value="${post.userId}" /></th>
-	<th width="35%">投稿日時:<c:out value="${post.createdAt}" /></th>
-	<tr><td colspan="3" align="left">本文<c:out value="${post.text}" /></td></tr>
-	<tr><th  colspan="3" align="center">コメント</th></tr>
-	<tr><td colspan="3" align="left"><textarea name="message" cols="100" rows="5"></textarea></td></tr>
-    </table>
-    </c:forEach>
+	<tr><th width="30%">件名:<c:out value="${post.subject}" /></th>
+	<th width="20%">投稿者:<c:out value="${post.name}" /></th>
+	<th width="30%">投稿日時:<c:out value="${post.createdAt}" /></th>
+	<th width="20%">カテゴリー:<c:out value="${post.category}" /></th>
+	<tr><td colspan="4" align="left">本文:::<c:out value="${post.text}" /></td></tr>
+	</table>
+	</c:forEach>
+	<c:if test="${ isShowMessageForm }">
+
+		<form action="comment" method="post">
+			コメント<br />
+			<textarea name="message" cols="100" rows="5" ></textarea>
+			<br />
+			<input type="submit" value="コメント"">（500文字まで）
+		</form>
+	</c:if>
+
 
 </body>
 </html>

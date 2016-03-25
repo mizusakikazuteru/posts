@@ -48,18 +48,18 @@ public class PostDao {
 
 				Post post = new Post();
 				int id = rs.getInt("id");
-				String Subject = rs.getString("subject");
-				String Text = rs.getString("text");
-				String Category = rs.getString("category");
+				String subject = rs.getString("subject");
+				String text = rs.getString("text");
+				String category = rs.getString("category");
 				Timestamp createdAt = rs.getTimestamp("created_at");
-				String UserId = rs.getString("user_id");
+				String name = rs.getString("name");
 
 				post.setId(id);
-				post.setSubject(Subject);
-				post.setText(Text);
-				post.setCategory(Category);
+				post.setSubject(subject);
+				post.setText(text);
+				post.setCategory(category);
 				post.setCreatedAt(createdAt);
-				post.setUserId(UserId);
+				post.setName(name);
 
 				ret.add(post);
 
