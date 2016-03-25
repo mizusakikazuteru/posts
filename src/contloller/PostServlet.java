@@ -61,9 +61,6 @@ public class PostServlet extends HttpServlet {
 
 	}
 
-
-
-
 	// isValid メソッド (SQLServerConnection) バリデーション処理
 	// SQLServerConnection オブジェクトが閉じられておらず、有効であるかどうか。
 	private boolean isValid(HttpServletRequest req, List<String> posts) {

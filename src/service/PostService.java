@@ -36,12 +36,9 @@ public class PostService {
 		try {
 			connection = getConnection();
 
-			//PostDao postDao = new PostDao();
-			return PostDao.toPostList(connection);
-			//return postDao.toPostList(connection);
+			return PostDao.getAllPosts(connection);
 		}
 		catch (Error e) {
-			System.out.print("エラーが発生しました");
 		} finally {
 			close(connection);
 

@@ -3,10 +3,10 @@ package dao;
 import static util.CloseableUtil.*;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,20 +16,20 @@ import exception.SQLRuntimeException;
 public class PostDao {
 
 	// 投稿情報を結果セットからbeansのpost.javaに入れる
-	public static List<Post> toPostList(Connection con) {
+	public static List<Post> getAllPosts(Connection con) {
 		//List<Post> ret = new ArrayList<Post>();
 
 		PreparedStatement ps = null;
 		//ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM postings";
+			String sql = "SELECT * FROM postings INNER JOIN users ON postings.user_id = users.id ";
 
 			ps = con.prepareStatement(sql);
 
 			ResultSet rs = ps.executeQuery();
 
 			rs = ps.executeQuery();
-			return postList(rs);
+			return toPostList(rs);
 
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
@@ -37,7 +37,7 @@ public class PostDao {
 			close(ps);
 		}
 	}
-		private static List<Post> postList(ResultSet rs) throws SQLException {
+		private static List<Post> toPostList(ResultSet rs) throws SQLException {
 
 			List<Post> ret = new ArrayList<Post>();
 
@@ -50,10 +50,9 @@ public class PostDao {
 				int id = rs.getInt("id");
 				String Subject = rs.getString("subject");
 				String Text = rs.getString("text");
-				String UserId = rs.getString("user_id");
 				String Category = rs.getString("category");
-				Date createdAt = rs.getDate("created_at");
-
+				Timestamp createdAt = rs.getTimestamp("created_at");
+				String UserId = rs.getString("user_id");
 
 				post.setId(id);
 				post.setSubject(Subject);

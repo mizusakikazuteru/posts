@@ -1,7 +1,7 @@
 package beans;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Post implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -10,7 +10,7 @@ public class Post implements Serializable {
 	private String subject;
 	private String text;
 	private String category;
-	private Date createdAt;
+	private Timestamp createdAt;
 	private String userId;
 
 	// ①ID
@@ -50,11 +50,11 @@ public class Post implements Serializable {
 	}
 
 	// ④登録日時
-	public Date getCreatedAt() {
+	public Timestamp getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(Date createdAt) {
+	public void setCreatedAt(Timestamp createdAt) {
 		this.createdAt = createdAt;
 	}
 
