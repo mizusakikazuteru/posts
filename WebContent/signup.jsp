@@ -49,12 +49,12 @@ main-contents {
 					<th><label for="loginId">ログインID</label></th>
 					<td><input name="loginId" id="loginId" /></td>
 				</tr>
-				<br /> ​
+			​
 				<tr>
 					<th><label for="password">パスワード</label></th>
 					<td><input name="password" type="password" id="password" /></td>
 				</tr>
-				<br /> ​
+			​
 				<tr>
 					<th><label for="newpass">確認用パスワード</label></th>
 					<td><input name="newpass" type="password" id="newpass" /></td>
@@ -85,7 +85,7 @@ main-contents {
 					</select></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="登録" /><a href="./">戻る</a></td>
+					<td><input type="submit" value="登録" /><a href="management">戻る</a></td>
 				</tr>
 				<br /> ​
 			</table>

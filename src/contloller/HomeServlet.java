@@ -1,7 +1,6 @@
 package contloller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Comment;
 import beans.Post;
 import beans.User;
+import service.CommentService;
 import service.PostService;
 import service.UserService;
 
@@ -25,11 +26,19 @@ public class HomeServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
+		User user = (User) req.getSession().getAttribute("loginUser");
+
 		PostService post = new PostService();
 
 		List<Post> postList = post.getPosts();
 
 		req.setAttribute("postList", postList);
+
+		CommentService comment = new CommentService();
+
+		List<Comment> commnetList = comment.getComments();
+
+		req.setAttribute("commnetList", commnetList);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("home.jsp");
 		dispatcher.forward(req, res);
@@ -38,7 +47,7 @@ public class HomeServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
-		List<String> messages = new ArrayList<String>();
+		//List<String> messages = new ArrayList<String>();
 
 		HttpSession session = req.getSession();
 

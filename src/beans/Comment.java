@@ -1,8 +1,5 @@
 package beans;
 
-
-
-
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -12,8 +9,8 @@ public class Comment implements Serializable {
 	private int id;
 	private String text;
 	private Timestamp createdAt;
-	private int userId;
-	private int postId;
+	private String userId;
+	private String postId;
 
 	// ①ID
 	public int getId() {
@@ -23,7 +20,6 @@ public class Comment implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	// ②本文
 	public String getText() {
@@ -44,23 +40,21 @@ public class Comment implements Serializable {
 	}
 
 	// ④登録者
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+
 	// ⑤記事投稿
-		public int getPostId() {
-			return postId;
-		}
+	public String getPostId() {
+		return postId;
+	}
 
-		public void setPostId(int postId) {
-			this.postId = postId;
-		}
-
-
-
+	public void setPostId(String postId) {
+		this.postId = postId;
+	}
 
 }

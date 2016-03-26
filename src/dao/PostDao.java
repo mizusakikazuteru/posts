@@ -17,10 +17,10 @@ public class PostDao {
 
 	// 投稿情報を結果セットからbeansのpost.javaに入れる
 	public static List<Post> getAllPosts(Connection con) {
-		//List<Post> ret = new ArrayList<Post>();
+
 
 		PreparedStatement ps = null;
-		//ResultSet rs = null;
+
 		try {
 			String sql = "SELECT * FROM postings INNER JOIN users ON postings.user_id = users.id ";
 

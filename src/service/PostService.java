@@ -31,20 +31,19 @@ public class PostService {
 			close(connection);
 		}
 	}
+
 	public List<Post> getPosts() {
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
 			return PostDao.getAllPosts(connection);
-		}
-		catch (Error e) {
+		} catch (Error e) {
 		} finally {
 			close(connection);
 
 		}
 		return null;
 	}
-
 
 }

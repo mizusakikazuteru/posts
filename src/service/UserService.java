@@ -4,6 +4,7 @@ import static util.CloseableUtil.*;
 import static util.DBUtil.*;
 
 import java.sql.Connection;
+import java.util.List;
 
 import beans.User;
 import dao.UserDao;
@@ -35,6 +36,22 @@ public class UserService {
 			close(connection);
 		}
 	}
+
+	public List<User> getUser() {
+		Connection connection = null;
+		try {
+			connection = getConnection();
+
+			return UserDao.getAllUser(connection);
+		} catch (Error e) {
+		} finally {
+			close(connection);
+
+		}
+		return null;
+	}
+
+
 
 	// 内容編集
 	public void update(User user) {

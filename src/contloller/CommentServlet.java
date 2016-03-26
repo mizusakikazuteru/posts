@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,7 +15,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import beans.Comment;
-import beans.User;
 import service.CommentService;
 
 
@@ -26,30 +26,35 @@ public class CommentServlet extends HttpServlet {
 		protected void doPost(HttpServletRequest req,
 				HttpServletResponse res) throws IOException, ServletException {
 
+			List<String> comments = new ArrayList<String>();
+
 			HttpSession session = req.getSession();
 
-			List<String> messages = new ArrayList<String>();
+			if (isValid(req, comments) == true) {
 
-			if (isValid(req, messages) == true) {
-
-				User user = (User) session.getAttribute("loginUser");
+				//User user = (User) session.getAttribute("loginUser");
 
 				Comment comment = new Comment();
-				comment.setText(req.getParameter("message"));
-				comment.setUserId(user.getId());
+
+				comment.setText(req.getParameter("text"));
+				comment.setUserId(req.getParameter("userId"));
+				comment.setPostId(req.getParameter("posId"));
 
 				new CommentService().register(comment);
 
-				res.sendRedirect("");
-			} else {
-				session.setAttribute("errorMessages", messages);
-				res.sendRedirect("");
+	            res.sendRedirect("/home");
+	        } else {
+	        	session.setAttribute("errorMessages", comments);
+	            RequestDispatcher dispatcher = req.getRequestDispatcher("post.jsp");
+	            dispatcher.forward(req, res);
+
 			}
+
 		}
 
-		private boolean isValid(HttpServletRequest request, List<String> messages) {
+		private boolean isValid(HttpServletRequest req, List<String> messages) {
 
-			String message = request.getParameter("message");
+			String message = req.getParameter("message");
 
 			if (StringUtils.isEmpty(message) == true) {
 				messages.add("コメントを入力してください");

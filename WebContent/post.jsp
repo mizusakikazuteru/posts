@@ -40,7 +40,7 @@ td {
 <body>
 	<center>
 		<h1>新規投稿画面</h1>
-		<div class="main-contents">
+
 		<c:if test="${ not empty errorMessages }">
 			<div class="errorMessages">
 				<ul>
@@ -51,7 +51,7 @@ td {
 			</div>
 			<c:remove var="errorMessages" scope="session" />
 		</c:if>
-		<form action="" method="post">
+		<form action="home" method="post">
 			<br />
 			<table>
 				<tr>
@@ -59,25 +59,21 @@ td {
 					<td><input name="subject" id="subject" maxlength="20"
 						size="50" /></td>
 				</tr>
-				<br /> ​
 				<tr>
 					<th><label for="text">本文</label></th>
 					<td><textarea name="text" id="text" cols="70" rows="20" /></textarea></td>
 				</tr>
-				<br />
-
 				<tr>
 					<th><label for="category">カテゴリー</label></th>
 					<td><input name="category" id="category" maxlength="20"
 						size="50" /></td>
 				</tr>
-				<br /> ​
 				<tr>
 					<td colspan="2" id="button"><input type="submit" value="新規投稿" />
 						<input type="reset" value="消去" /></td>
 				</tr>
 				<tr>
-					<td colspan="2" id="button"><a href="./">ホームに戻る</a></td>
+					<td colspan="2" id="button"><a href="home">ホームに戻る</a></td>
 				</tr>
 			</table>
 

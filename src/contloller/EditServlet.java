@@ -29,14 +29,6 @@ public class EditServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-//		HttpSession session = req.getSession();
-//		User loginUser = (User) session.getAttribute("loginUser");
-//
-//		if (session.getAttribute("editUser") == null) {
-//			User editUser = new UserService().getUser(loginUser.getId());
-//			session.setAttribute("editUser", editUser);
-//		}
-
 		// 支店情報取得→jspへ表示
 		BranchService branchService = new BranchService();
 		List<Branch> branches = branchService.getBranches();

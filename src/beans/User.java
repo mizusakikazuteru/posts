@@ -12,7 +12,6 @@ public class User implements Serializable {
 	private String name;
 	private String branchId;
 	private String departmentId;
-
 	private boolean isActive;
 
 	// ①ID

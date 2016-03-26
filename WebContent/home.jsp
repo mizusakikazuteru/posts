@@ -10,17 +10,50 @@
 <title>ホーム</title>
 <style type="text/css">
 *{padding:5px; margin:0px;}
-   body{textalign:center;}
+   body,h1{textalign:center;}
    table{width:800px; background:while; border:2px black solid; border-collapse:collapse;}
    th{border:1px black solid; background:#CCCCFF;}
    td{border:1px black solid;}
+   h3{textalign:left;}
+
 </style>
 <script type="text/javascript">
 
 </script>
 </head>
 <body>
-	<h1>ホーム画面</h1>
+
+	<p>
+		お疲れ様です
+		<c:out value="${loginUser .name}" />
+		さん
+	</p>
+	<c:if test="${ empty loginUser .name }">
+		<a href="login">ログイン</a>
+	</c:if>
+	<center>
+		<h1>ホーム画面</h1>
+		<c:if test="${ not empty loginUser .name }">
+
+				<a href="post">新規投稿</a>
+<c:if test="${ not empty errorMessages }">
+		<div class="errorMessages">
+
+				<c:forEach items="${errorMessages}" var="message">
+					<li><c:out value="${message}" /></li>
+				</c:forEach>
+
+		</div>
+		<c:remove var="errorMessages" scope="session" />
+	</c:if>
+
+
+	<a href="management">ユーザー管理</a>
+
+				<a href="logout">ログアウト</a>
+
+		</c:if>
+
 
 	<c:forEach  var="post" items="${postList}">
 	<table>
@@ -28,18 +61,23 @@
 	<th width="20%">投稿者:<c:out value="${post.name}" /></th>
 	<th width="30%">投稿日時:<c:out value="${post.createdAt}" /></th>
 	<th width="20%">カテゴリー:<c:out value="${post.category}" /></th>
-	<tr><td colspan="4" align="left">本文:::<c:out value="${post.text}" /></td></tr>
+	<tr><td colspan="4" align="left">本文:<c:out value="${post.text}" /></td></tr>
 	</table>
-	</c:forEach>
-	<c:if test="${ isShowMessageForm }">
 
-		<form action="comment" method="post">
-			コメント<br />
+	<form action="comment" method="post">
+			<h3>コメント</h3><br />
 			<textarea name="message" cols="100" rows="5" ></textarea>
 			<br />
-			<input type="submit" value="コメント"">（500文字まで）
+			<input type="submit" value="コメント">（500文字まで）
 		</form>
-	</c:if>
+	</c:forEach>
+
+
+
+
+
+
+
 
 
 </body>

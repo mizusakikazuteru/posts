@@ -10,9 +10,22 @@
 </head>
 <body>
 	<h1>ユーザー管理画面</h1>
-	<ul id="menu">
-		<li><a href="signup.jsp">ユーザー新規登録</a></li>
-		<li><a href="edit.jsp">ユーザー編集登録</a></li>
+		<a href="signup.jsp">ユーザー新規登録</a>
+		<a href="edit.jsp">ユーザー編集登録</a>
+
+	<c:forEach  var="user" items="${userList}">
+	<table>
+	<tr>
+	<th width="25%">ID:<c:out value="${user.Id}" /></th>
+	<th width="25%">ログインID:<c:out value="${user.loginId}" /></th>
+	<th width="25%">名前:<c:out value="${user.name}" /></th>
+	<th  width="25%">停止・復活:<c:out value="${user.name}" /></th>
+	</tr>
+	</table>
+	</c:forEach>
+
+
+
 	</ul>
 </body>
 </html>

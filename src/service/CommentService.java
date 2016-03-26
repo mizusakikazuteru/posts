@@ -4,6 +4,7 @@ import static util.CloseableUtil.*;
 import static util.DBUtil.*;
 
 import java.sql.Connection;
+import java.util.List;
 
 import beans.Comment;
 import dao.CommentDao;
@@ -30,4 +31,19 @@ public class CommentService {
 			close(connection);
 		}
 	}
+
+	public List<Comment> getComments() {
+		Connection connection = null;
+		try {
+			connection = getConnection();
+
+			return CommentDao.getAllComments(connection);
+		} catch (Error e) {
+		} finally {
+			close(connection);
+
+		}
+		return null;
+	}
+
 }

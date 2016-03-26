@@ -19,6 +19,67 @@ public class UserDao {
 	public UserDao() {
 
 	}
+
+public static List<User> getAllUser(Connection con) {
+
+
+		PreparedStatement ps = null;
+
+		try {
+			String sql = "SELECT * FROM users  ";
+
+			ps = con.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			rs = ps.executeQuery();
+			return toUsersList(rs);
+
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close(ps);
+		}
+	}
+		private static List<User> toUsersList(ResultSet rs) throws SQLException {
+
+			List<User> ret = new ArrayList<User>();
+
+			try {
+
+
+			while (rs.next()) {
+
+				User user = new User();
+
+				int id = rs.getInt("id");
+				String loginId = rs.getString("login_id");
+				String password = rs.getString("password");
+				String name = rs.getString("name");
+				String branchId = rs.getString("branch_id");
+				String departmentId = rs.getString("department_id");
+				boolean isActive = rs.getBoolean("is_active");
+
+				user.setId(id);
+				user.setLoginId(loginId);
+				user.setPassword(password);
+				user.setName(name);
+				user.setBranchId(branchId);
+				user.setDepartmentId(departmentId);
+				user.setIsActive(isActive);
+
+				ret.add(user);
+
+			}
+
+			return ret;
+		} finally {
+			close(rs);
+		}
+	}
+
+
+
 	//ログイン情報を取得
 	public User getUser(Connection connection, String loginId, String password) {
 

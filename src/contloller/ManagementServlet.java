@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
+import service.UserService;
 
 @WebServlet("/management")
 public class ManagementServlet extends HttpServlet {
@@ -41,12 +43,40 @@ public class ManagementServlet extends HttpServlet {
 			res.sendRedirect("home");
 		}
 
+		UserService users = new UserService();
 
+		List<User> userList = users.getUser();
+
+		req.setAttribute("userList", userList);
+
+//		RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
+//		dispatcher.forward(req, res);
 
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("ああああ");
+
+		HttpSession session = req.getSession();
+
+		User user = (User) session.getAttribute("loginUser");
+
+		User users = new User();
+
+		int Id =Integer.parseInt(req.getParameter("Id"));
+
+		users.setId(Id);
+		users.setLoginId(req.getParameter("loginId"));
+		users.setName(req.getParameter("name"));
+
+
+
+		//boolean isActive = Boolean.getBoolean(req.getParameter("isActive"));
+		//users.setIsActive(isActive);
+
+		//res.sendRedirect("management");
+		RequestDispatcher dispatcher = req.getRequestDispatcher("management");
+		dispatcher.forward(req, res);
+
 	}
 
 }
