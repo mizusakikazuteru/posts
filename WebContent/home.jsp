@@ -70,10 +70,10 @@
 	投稿日時検索<
 	</form>
 	<h3>コメント</h3><br />
-	<form action="comment" method="post">
-			<input type="hidden" name="postid" value="postId">
-			<textarea name="text" cols="100" rows="5" ></textarea>
 
+	<form action="comment" method="post">
+			<input type="hidden" name="postid" value="${post.id}">
+			<textarea name="text" cols="100" rows="5" ></textarea>
 			<br />
 			<input type="submit" value="コメント" >（500文字まで）
 		</form>
