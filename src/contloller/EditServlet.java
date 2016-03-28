@@ -40,6 +40,8 @@ public class EditServlet extends HttpServlet {
 		List<Department> departments = departmentService.getDepartments();
 
 		req.setAttribute("departments", departments);
+
+
 		req.getRequestDispatcher("edit.jsp").forward(req, res);
 	}
 

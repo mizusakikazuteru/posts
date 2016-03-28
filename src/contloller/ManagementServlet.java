@@ -49,8 +49,8 @@ public class ManagementServlet extends HttpServlet {
 
 		req.setAttribute("userList", userList);
 
-//		RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
-//		dispatcher.forward(req, res);
+		RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
+		dispatcher.forward(req, res);
 
 	}
 

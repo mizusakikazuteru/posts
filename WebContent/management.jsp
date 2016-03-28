@@ -19,13 +19,10 @@
 	<th width="25%">ID:<c:out value="${user.Id}" /></th>
 	<th width="25%">ログインID:<c:out value="${user.loginId}" /></th>
 	<th width="25%">名前:<c:out value="${user.name}" /></th>
-	<th  width="25%">停止・復活:<c:out value="${user.name}" /></th>
+	<th  width="25%">停止・復活:<c:out value="${user.isActive}" /></th>
 	</tr>
 	</table>
 	</c:forEach>
 
-
-
-	</ul>
 </body>
 </html>

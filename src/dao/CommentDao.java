@@ -26,7 +26,7 @@ public class CommentDao {
 			ps = con.prepareStatement(sql);
 
 			ResultSet rs = ps.executeQuery();
-
+			List<Comment> ret = toCommentList(rs);
 			rs = ps.executeQuery();
 			return toCommentList(rs);
 
@@ -49,8 +49,8 @@ public class CommentDao {
 				int id = rs.getInt("id");
 				String text = rs.getString("text");
 				Timestamp createdAt = rs.getTimestamp("created_at");
-				String userId = rs.getString("user_id");
-				String postId = rs.getString("posting_id");
+				int userId = rs.getInt("user_id");
+				int postId = rs.getInt("posting_id");
 
 				comment.setId(id);
 				comment.setText(text);
@@ -78,20 +78,19 @@ public class CommentDao {
 					StringBuilder sql = new StringBuilder();
 					sql.append("INSERT INTO comments ( ");
 					sql.append(" text");
-					sql.append(", created_at");
 					sql.append(",user_id");
 					sql.append(", posting_id");
 					sql.append(") VALUES (");
 					sql.append(" ?"); // text
-					sql.append(", ?"); // created_at
 					sql.append(", ?"); // user_id
 					sql.append(", ?"); // posting_id
 					sql.append(")");
 
 					ps = connection.prepareStatement(sql.toString());
 
-					ps.setString(1, comment.getUserId());
-					ps.setString(2, comment.getText());
+					ps.setString(1, comment.getText());
+					ps.setInt(2, comment.getUserId());
+					ps.setInt(3, comment.getPostId());
 
 					ps.executeUpdate();
 				} catch (SQLException e) {

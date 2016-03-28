@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import beans.Post;
+import beans.User;
 import service.PostService;
 
 @WebServlet(urlPatterns = { "/post" })
@@ -39,19 +40,18 @@ public class PostServlet extends HttpServlet {
 
 		if (isValid(req, posts) == true) {
 
-			//User user = (User) session.getAttribute("loginUser");
+			User user = (User) session.getAttribute("loginUser");
 
 			Post post = new Post();
 
 			post.setSubject(req.getParameter("subject"));
 			post.setText(req.getParameter("text"));
 			post.setCategory(req.getParameter("category"));
-			post.setUserId(req.getParameter("userId"));
-
+			post.setUserId(user.getId());
 
 			new PostService().register(post);
 
-            res.sendRedirect("/home");
+            res.sendRedirect("home");
         } else {
         	session.setAttribute("errorMessages", posts);
             RequestDispatcher dispatcher = req.getRequestDispatcher("post.jsp");

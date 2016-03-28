@@ -8,6 +8,7 @@ import java.util.List;
 
 import beans.Post;
 import dao.PostDao;
+import dao.PostmesDao;
 
 public class PostService {
 
@@ -18,7 +19,7 @@ public class PostService {
 			connection = getConnection();
 
 			PostDao postDao = new PostDao();
-			postDao.insert(connection, posts);
+			PostDao.insert(connection, posts);
 
 			commit(connection);
 		} catch (RuntimeException e) {
@@ -32,18 +33,28 @@ public class PostService {
 		}
 	}
 
-	public List<Post> getPosts() {
+	private static final int LIMIT_NUM = 1000;
+
+	public List<Post> getPost() {
+
 		Connection connection = null;
 		try {
 			connection = getConnection();
 
-			return PostDao.getAllPosts(connection);
+			PostmesDao postmesDao = new PostmesDao();
+			List<Post> ret = postmesDao.getPost(connection, LIMIT_NUM);
+
+			commit(connection);
+
+			return ret;
+		} catch (RuntimeException e) {
+			rollback(connection);
+			throw e;
 		} catch (Error e) {
+			rollback(connection);
+			throw e;
 		} finally {
 			close(connection);
-
 		}
-		return null;
 	}
-
 }

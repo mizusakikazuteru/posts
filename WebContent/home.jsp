@@ -55,7 +55,7 @@
 		</c:if>
 
 
-	<c:forEach  var="post" items="${postList}">
+	<c:forEach  var="post" items="${post}">
 	<table>
 	<tr><th width="30%">件名:<c:out value="${post.subject}" /></th>
 	<th width="20%">投稿者:<c:out value="${post.name}" /></th>
@@ -63,20 +63,22 @@
 	<th width="20%">カテゴリー:<c:out value="${post.category}" /></th>
 	<tr><td colspan="4" align="left">本文:<c:out value="${post.text}" /></td></tr>
 	</table>
-
+	<form action="${post.category}" method="post">
+	カテゴリー検索<input type="text" name="title">
+	<input type="submit" value="検索">
+	<input type="reset" value="クリア">
+	投稿日時検索<
+	</form>
+	<h3>コメント</h3><br />
 	<form action="comment" method="post">
-			<h3>コメント</h3><br />
-			<textarea name="message" cols="100" rows="5" ></textarea>
+			<input type="hidden" name="postid" value="postId">
+			<textarea name="text" cols="100" rows="5" ></textarea>
+
 			<br />
-			<input type="submit" value="コメント">（500文字まで）
+			<input type="submit" value="コメント" >（500文字まで）
 		</form>
+
 	</c:forEach>
-
-
-
-
-
-
 
 
 

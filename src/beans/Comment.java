@@ -9,8 +9,8 @@ public class Comment implements Serializable {
 	private int id;
 	private String text;
 	private Timestamp createdAt;
-	private String userId;
-	private String postId;
+	private int userId;
+	private int postId;
 
 	// ①ID
 	public int getId() {
@@ -40,20 +40,20 @@ public class Comment implements Serializable {
 	}
 
 	// ④登録者
-	public String getUserId() {
+	public int getUserId() {
 		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(int userId) {
 		this.userId = userId;
 	}
 
 	// ⑤記事投稿
-	public String getPostId() {
+	public int getPostId() {
 		return postId;
 	}
 
-	public void setPostId(String postId) {
+	public void setPostId(int postId) {
 		this.postId = postId;
 	}
 

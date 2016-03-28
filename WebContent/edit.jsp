@@ -30,22 +30,18 @@
 					<th><label for="loginId">ログインID</label></th>
 					<td><input name="loginId" id="loginId" /></td>
 				</tr>
-				<br /> ​
 				<tr>
 					<th><label for="password">パスワード</label></th>
 					<td><input name="password" type="password" id="password" /></td>
 				</tr>
-				<br /> ​
 				<tr>
 					<th><label for="newpass">確認用パスワード</label></th>
 					<td><input name="newpass" type="password" id="newpass" /></td>
 				</tr>
-				<br /> ​
 				<tr>
 					<th><label for="name">氏名</label></th>
 					<td><input name="name" id="name" /></td>
 				</tr>
-				<br /> ​
 				<tr>
 					<th><label for="branchId">支店名</label></th>
 					<td><select name="branchId">
@@ -55,7 +51,6 @@
 							</c:forEach>
 					</select></td>
 				</tr>
-				​
 				<tr>
 					<th><label for="departmentId">部署・役職</label></th>
 					<td><select name="departmentId">
@@ -66,10 +61,9 @@
 					</select></td>
 				</tr>
 				<tr>
-					<td><input type="submit" value="登録" /><a href="./">戻る</a></td>
+					<td><input type="submit" value="登録" /><a href="management">戻る</a></td>
 				</tr>
-				<br /> ​
-			</table>
+				</table>
 
 
 		</form>
