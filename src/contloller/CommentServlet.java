@@ -59,11 +59,11 @@ public class CommentServlet extends HttpServlet {
 
 		if (StringUtils.isEmpty(comment) == true) {
 			comments.add("コメントを入力してください");
-//		}
-//		if (140 <  comments.length()) {
-//			comments.add("500文字以下で入力してください");
-//		}
-//		if (comments.size() == 0) {
+		}
+		if (500 <  comments.size()) {
+			comments.add("500文字以下で入力してください");
+		}
+		if (comments.size() == 0) {
 			return true;
 		} else {
 			return false;
