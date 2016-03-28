@@ -9,11 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Category;
 import beans.Comment;
 import beans.Post;
 import beans.User;
-import service.CategoryService;
 import service.CommentService;
 import service.PostService;
 
@@ -31,9 +29,8 @@ public class HomeServlet extends HttpServlet {
 		List<Post> posts = new PostService().getPost();
 		List<Comment> comments = new CommentService().getComments();
 
-		//カテゴリー情報取得→jspへ表示
-		List<Category> categories = CategoryService.getCategories();
-		CategoryService categoryService = new CategoryService();
+		posts.setCategory(req.getParameter("category"));
+
 
 		req.setAttribute("posts", posts);
 		req.setAttribute("comments", comments);
