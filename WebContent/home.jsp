@@ -78,10 +78,11 @@ h3 {
 
 		</c:if>
 		<form action="home" method="get">
-				カテゴリー検索<input type="text" name="category"> <input type="submit"
-					value="検索"> <input type="reset" value="クリア">
+        <label for="category">カテゴリー検索</label>
+        <input type="text" name="category">
+        <input type="submit" value="検索">
+        <input type="reset" value="クリア">
 		</form>
-
 		<c:forEach var="postList" items="${posts}">
 			<table>
 				<tr>
