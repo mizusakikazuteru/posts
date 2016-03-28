@@ -12,17 +12,26 @@
 	<h1>ユーザー管理画面</h1>
 		<a href="signup.jsp">ユーザー新規登録</a>
 		<a href="edit.jsp">ユーザー編集登録</a>
-
-	<c:forEach  var="user" items="${userList}">
 	<table>
+	<c:forEach  var="user" items="${userList}">
 	<tr>
-	<th width="25%">ID:<c:out value="${user.Id}" /></th>
+	<th width="25%">ID:<c:out value="${user.id}" /></th>
 	<th width="25%">ログインID:<c:out value="${user.loginId}" /></th>
 	<th width="25%">名前:<c:out value="${user.name}" /></th>
-	<th  width="25%">停止・復活:<c:out value="${user.isActive}" /></th>
+
+	<c:choose>
+	<c:when test="${user.isActive == true }">
+	<th  width="25%" ><button>停止</button></th>
+	</c:when>
+	<c:otherwise>
+	<th  width="25%" ><button>復活</button></th>
+	</c:otherwise>
+	</c:choose>
+
 	</tr>
-	</table>
+
 	</c:forEach>
+	</table>
 
 </body>
 </html>

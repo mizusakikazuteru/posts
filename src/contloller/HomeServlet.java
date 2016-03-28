@@ -29,12 +29,12 @@ public class HomeServlet extends HttpServlet {
 		List<Post> posts = new PostService().getPost();
 		List<Comment> comments = new CommentService().getComments();
 
-		posts.setCategory(req.getParameter("category"));
+		//posts.setCategory(req.getParameter("category"));
 
 
 		req.setAttribute("posts", posts);
 		req.setAttribute("comments", comments);
-		req.setAttribute("categories", categories);
+		//req.setAttribute("categories", categories);
 
 		req.getRequestDispatcher("home.jsp").forward(req, res);
 	}
