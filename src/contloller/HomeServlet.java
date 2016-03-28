@@ -33,8 +33,13 @@ public class HomeServlet extends HttpServlet {
 
 		List<Post> posts = new PostService().getPost();
 		List<Comment> comments = new CommentService().getComments();
+		// カテゴリー情報取得→jspへ表示
+//		List<Category> categories = CategoryService.getCategories();
+//		CategoryService categoryService = new CategoryService();
+
 		req.setAttribute("posts", posts);
 		req.setAttribute("comments", comments);
+		req.setAttribute("categories", categories);
 
 		req.getRequestDispatcher("home.jsp").forward(req, res);
 	}

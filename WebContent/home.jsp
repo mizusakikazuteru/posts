@@ -76,32 +76,43 @@ h3 {
 		</c:if>
 
 
-		<c:forEach var="post" items="${post}">
+		<c:forEach var="postList" items="${posts}">
 			<table>
 				<tr>
-					<th width="30%">件名:<c:out value="${post.subject}" /></th>
-					<th width="20%">投稿者:<c:out value="${post.name}" /></th>
-					<th width="30%">投稿日時:<c:out value="${post.createdAt}" /></th>
-					<th width="20%">カテゴリー:<c:out value="${post.category}" /></th>
+					<th width="30%">件名:<c:out value="${postList.subject}" /></th>
+					<th width="20%">投稿者:<c:out value="${postList.name}" /></th>
+					<th width="30%">投稿日時:<c:out value="${postList.createdAt}" /></th>
+					<th width="20%">カテゴリー:<c:out value="${postList.category}" /></th>
 				<tr>
-					<td colspan="4" align="left">本文:<c:out value="${post.text}" /></td>
+					<td colspan="4" align="left">本文:<c:out value="${postList.text}" /></td>
 				</tr>
 			</table>
-			<form action="${post.category}" method="post">
-				カテゴリー検索<input type="text" name="title"> <input type="submit"
+			<form action="home" method="post">
+				カテゴリー検索<input type="text" name="category"> <input type="submit"
 					value="検索"> <input type="reset" value="クリア">
 				投稿日時検索<
 			</form>
 			<h3>コメント</h3>
 			<br />
 
-			<c:if test="${ comments }">
 				<form action="comment" method="post">
-					<input type="hidden" name="postid" value="${post.id}">
+					<input type="hidden" name="postid" value="${postList.id}">
 					<textarea name="text" cols="100" rows="5"></textarea>
 					<br /> <input type="submit" value="コメント">（500文字まで）
 				</form>
-			</c:if>
-		</c:forEach>
+
+			<h2>コメント一覧</h2>
+			<c:forEach items="${comments}" var="commentList">
+				<table>
+				<tr>
+				<th width="50%">投稿者:<c:out value="${commentList.id}" /></th>
+				<th width="50%">投稿日時:<c:out value="${commentList.createdAt}" /></th>
+				</tr>
+				<tr>
+				<td colspan="4" align="left">本文:<c:out value="${commentList.text}" /></td>
+				</tr>
+				</table>
+			</c:forEach>
+			</c:forEach>
 </body>
 </html>

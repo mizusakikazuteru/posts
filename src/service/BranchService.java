@@ -10,8 +10,11 @@ import beans.Branch;
 import dao.BranchDao;
 
 public class BranchService {
+
 	public List<Branch> getBranches() {
+
 		Connection connection = null;
+
 		try {
 			connection = getConnection();
 			return BranchDao.getBranches(connection);
