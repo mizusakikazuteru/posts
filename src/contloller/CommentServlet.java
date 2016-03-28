@@ -32,7 +32,7 @@ public class CommentServlet extends HttpServlet {
 		if (isValid(req, comments) == true) {
 
 			 User user = (User) session.getAttribute("loginUser");
-
+			 //Post post = (Post) session.getAttribute("postId");
 			Comment comment = new Comment();
 			Post post = new Post();
 
