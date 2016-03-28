@@ -60,6 +60,9 @@ h3 {
 			<c:if test="${ not empty errorMessages }">
 				<div class="errorMessages">
 
+
+
+
 					<c:forEach items="${errorMessages}" var="message">
 						<li><c:out value="${message}" /></li>
 					</c:forEach>
@@ -74,7 +77,10 @@ h3 {
 			<a href="logout">ログアウト</a>
 
 		</c:if>
-
+		<form action="home" method="get">
+				カテゴリー検索<input type="text" name="category"> <input type="submit"
+					value="検索"> <input type="reset" value="クリア">
+		</form>
 
 		<c:forEach var="postList" items="${posts}">
 			<table>
@@ -87,11 +93,6 @@ h3 {
 					<td colspan="4" align="left">本文:<c:out value="${postList.text}" /></td>
 				</tr>
 			</table>
-			<form action="home" method="post">
-				カテゴリー検索<input type="text" name="category"> <input type="submit"
-					value="検索"> <input type="reset" value="クリア">
-				投稿日時検索<
-			</form>
 			<h3>コメント</h3>
 			<br />
 
