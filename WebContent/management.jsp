@@ -21,6 +21,7 @@
 				<th width="25%">名前:<c:out value="${user.name}" /></th>
 				<form action="management" method="get">
 				<input type="button" name="isactive" value="${user.isActive}">
+				</form>
 				<c:choose>
 					<c:when test="${user.isActive == true }">
 						<th width="25%"><button>停止</button></th>
@@ -29,7 +30,6 @@
 						<th width="25%"><button>復活</button></th>
 					</c:otherwise>
 				</c:choose>
-				</form>
 			</tr>
 
 
