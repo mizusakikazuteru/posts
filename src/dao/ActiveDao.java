@@ -23,7 +23,7 @@ public class ActiveDao {
 
 				ps = connection.prepareStatement(sql);
 
-				ResultSet rs = ps.executeQuery();
+				ResultSet rs = ps.executeUpdate();
 
 				return toIsActive(rs);
 			} catch (SQLException e) {
