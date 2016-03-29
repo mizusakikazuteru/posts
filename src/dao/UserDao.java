@@ -20,8 +20,7 @@ public class UserDao {
 
 	}
 
-public static List<User> getAllUser(Connection con) {
-
+	public static List<User> getAllUser(Connection con) {
 
 		PreparedStatement ps = null;
 
@@ -41,12 +40,12 @@ public static List<User> getAllUser(Connection con) {
 			close(ps);
 		}
 	}
-		private static List<User> toUsersList(ResultSet rs) throws SQLException {
 
-			List<User> ret = new ArrayList<User>();
+	private static List<User> toUsersList(ResultSet rs) throws SQLException {
 
-			try {
+		List<User> ret = new ArrayList<User>();
 
+		try {
 
 			while (rs.next()) {
 
@@ -78,9 +77,7 @@ public static List<User> getAllUser(Connection con) {
 		}
 	}
 
-
-
-	//ログイン情報を取得
+	// ログイン情報を取得
 	public User getUser(Connection connection, String loginId, String password) {
 
 		PreparedStatement ps = null;
@@ -129,7 +126,6 @@ public static List<User> getAllUser(Connection con) {
 				String branchId = rs.getString("branch_id");
 				String departmentId = rs.getString("department_id");
 
-
 				User user = new User();
 				user.setId(id);
 				user.setLoginId(loginId);
@@ -137,7 +133,6 @@ public static List<User> getAllUser(Connection con) {
 				user.setName(name);
 				user.setBranchId(branchId);
 				user.setDepartmentId(departmentId);
-
 
 				ret.add(user);
 			}
@@ -248,4 +243,29 @@ public static List<User> getAllUser(Connection con) {
 			close(ps);
 		}
 	}
+	//ユーザー復活・停止
+	public static List<User> getIsActive(Connection connection) {
+
+		PreparedStatement ps = null;
+
+		try {
+			String sql = "update users set is_active=if(is_active=1,0,1);";
+
+			ps = connection.prepareStatement(sql);
+
+			int count = ps.executeUpdate();
+			if (count == 0) {
+				throw new NoRowsUpdatedRuntimeException();
+			}
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close(ps);
+		}
+		return null;
+
+	}
 }
+
+
+

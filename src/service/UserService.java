@@ -53,7 +53,7 @@ public class UserService {
 
 
 
-	// 内容編集
+	// ユーザー情報の内容編集
 	public void update(User user) {
 
 		Connection connection = null;
@@ -77,6 +77,7 @@ public class UserService {
 			close(connection);
 		}
 	}
+
 
 	// ユーザー情報を取得
 	public User getUser(int userId) {

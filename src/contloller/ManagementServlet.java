@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
-import service.IsactiveService;
+import service.IsActiveService;
 import service.UserService;
 
 @WebServlet("/management")
@@ -44,7 +44,7 @@ public class ManagementServlet extends HttpServlet {
 //		}
 
 		UserService users = new UserService();
-		IsactiveService isactive = new IsactiveService();
+		IsActiveService isactive = new IsActiveService();
 
 		List<User> userList = users.getUser();
 		List<User> isActive = isactive.getActive();
