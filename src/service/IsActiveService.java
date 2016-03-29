@@ -11,7 +11,7 @@ import dao.UserDao;
 
 public class IsActiveService {
 
-	public List<User> getActive() {
+	public List<User> getIsActive() {
 
 		Connection connection = null;
 

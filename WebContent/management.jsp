@@ -7,6 +7,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ユーザー管理画面</title>
+
+<script src="<c:url value="jquery-2.2.0.min.js" />"></script>
+<script>
+	$(document).ready(function() {
+		$('#click').click(function() {
+			if (!confirm('本当に停止しますか？')) {
+
+				return false;
+			} else {
+
+
+				location.href = 'management.jsp';
+			}
+		});
+	});
+</script>
 </head>
 <body>
 	<h1>ユーザー管理画面</h1>
@@ -20,21 +36,18 @@
 				<th width="25%">ログインID:<c:out value="${user.loginId}" /></th>
 				<th width="25%">名前:<c:out value="${user.name}" /></th>
 				<form action="management" method="get">
-				<input type="button" name="isactive" value="${user.isActive}">
+					<c:choose>
+						<c:when test="${user.isActive == true }">
+							<th width="25%"><input type="button" id="click"
+								name="isactive" value="停止"></th>
+						</c:when>
+						<c:otherwise>
+							<th width="25%"><input type="button" id="click"
+								name="isactive" value="復活"></th>
+						</c:otherwise>
+					</c:choose>
 				</form>
-				<c:choose>
-					<c:when test="${user.isActive == true }">
-						<th width="25%"><button>停止</button></th>
-					</c:when>
-					<c:otherwise>
-						<th width="25%"><button>復活</button></th>
-					</c:otherwise>
-				</c:choose>
 			</tr>
-
-
-
-
 		</c:forEach>
 	</table>
 </body>

@@ -47,7 +47,7 @@ public class ManagementServlet extends HttpServlet {
 		IsActiveService isactive = new IsActiveService();
 
 		List<User> userList = users.getUser();
-		List<User> isActive = isactive.getActive();
+		List<User> isActive = isactive.getIsActive();
 
 		req.setAttribute("userList", userList);
 		req.setAttribute("isActive", isActive);
