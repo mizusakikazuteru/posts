@@ -44,18 +44,18 @@ body {
 				<label for="loginId"><th>ログインID</th></label>
 				<td><input name="loginId" id="loginId" /></td>
 			</tr>
-			<br />
+
 
 			<tr>
 				<label for="password"><th>パスワード</th></label>
 				<td><input name="password" type="password" id="password" /></td>
 			</tr>
-			<br />
+
 
 			<tr>
-				<td><input type="submit" value="ログイン" /><a href="./">戻る</a></td>
+				<td><input type="submit" value="ログイン" /><a href="login">戻る</a></td>
 			</tr>
-			<br />
+
 
 		</table>
 	</form>
