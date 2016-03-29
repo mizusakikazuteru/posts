@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
+import service.IsactiveService;
 import service.UserService;
 
 @WebServlet("/management")
@@ -43,10 +44,13 @@ public class ManagementServlet extends HttpServlet {
 //		}
 
 		UserService users = new UserService();
+		IsactiveService isactive = new IsactiveService();
 
 		List<User> userList = users.getUser();
+		List<User> isActive = isactive.getActive();
 
 		req.setAttribute("userList", userList);
+		req.setAttribute("isActive", isActive);
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
 		dispatcher.forward(req, res);

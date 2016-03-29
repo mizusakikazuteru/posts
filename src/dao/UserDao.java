@@ -129,6 +129,7 @@ public static List<User> getAllUser(Connection con) {
 				String branchId = rs.getString("branch_id");
 				String departmentId = rs.getString("department_id");
 
+
 				User user = new User();
 				user.setId(id);
 				user.setLoginId(loginId);
@@ -136,6 +137,7 @@ public static List<User> getAllUser(Connection con) {
 				user.setName(name);
 				user.setBranchId(branchId);
 				user.setDepartmentId(departmentId);
+
 
 				ret.add(user);
 			}

@@ -10,27 +10,32 @@
 </head>
 <body>
 	<h1>ユーザー管理画面</h1>
-		<a href="signup.jsp">ユーザー新規登録</a>
-		<a href="edit.jsp">ユーザー編集登録</a>
+	<a href="signup.jsp">ユーザー新規登録</a>
+	<a href="edit.jsp">ユーザー編集登録</a>
 	<table>
-	<c:forEach  var="user" items="${userList}">
-	<tr>
-	<th width="25%">ID:<c:out value="${user.id}" /></th>
-	<th width="25%">ログインID:<c:out value="${user.loginId}" /></th>
-	<th width="25%">名前:<c:out value="${user.name}" /></th>
+		<c:forEach var="user" items="${userList}">
+			<tr>
+				<th width="25%">ID:<c:out value="${user.id}" /></th>
+				<th width="25%">ログインID:<c:out value="${user.loginId}" /></th>
+				<th width="25%">名前:<c:out value="${user.name}" /></th>
+		<c:if test="${ isActive }">
+					<form action="management" method="get">
+					<c:choose>
+						<c:when test="${user.isActive == true }">
+							<th width="25%"><button>停止</button></th>
+						</c:when>
+						<c:otherwise>
+							<th width="25%"><button>復活</button></th>
+						</c:otherwise>
+					</c:choose>
+					</form>
+		</c:if>
+			</tr>
 
-	<c:choose>
-	<c:when test="${user.isActive == true }">
-	<th  width="25%" ><button>停止</button></th>
-	</c:when>
-	<c:otherwise>
-	<th  width="25%" ><button>復活</button></th>
-	</c:otherwise>
-	</c:choose>
 
-	</tr>
 
-	</c:forEach>
+
+		</c:forEach>
 	</table>
 
 </body>

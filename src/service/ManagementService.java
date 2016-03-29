@@ -30,4 +30,5 @@ public class ManagementService {
 		} finally {
 			close(connection);
 		}
-	}}
+	}
+}
