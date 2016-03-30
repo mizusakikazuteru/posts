@@ -243,26 +243,29 @@ public class UserDao {
 			close(ps);
 		}
 	}
+
 	//ユーザー復活・停止
-	public static List<User> getIsActive(Connection connection) {
+	public static  void updates(Connection connection, User isactive) {
 
 		PreparedStatement ps = null;
-
 		try {
-			String sql = "update users set is_active=if(is_active=1,0,1);";
+			String sql = "UPDATE users SET ( " +
+			"is_active = ? "+" WHERE"+" id = ?";
+
 
 			ps = connection.prepareStatement(sql);
 
-			int count = ps.executeUpdate();
-			if (count == 0) {
-				throw new NoRowsUpdatedRuntimeException();
-			}
+			ps.setInt(1, isactive.getId());
+			ps.setBoolean(2, isactive.getIsActive());
+
+			ps.executeUpdate();
+
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {
 			close(ps);
 		}
-		return null;
+
 
 	}
 }

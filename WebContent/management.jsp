@@ -24,14 +24,29 @@
 				<td width="25%">ログインID:<c:out value="${user.loginId}" /></td>
 				<td width="25%">名前:<c:out value="${user.name}" /></td>
 
-				<td><form action="management" method="post">
-					<c:if test="${user.isActive == (true || false) && ( !true || !false ) }" >
-						<input type="hidden" name="isactive" value="${user.id },${user.isActive == true }">
-						<input type="hidden" name="isactive" value="${user.id },${user.isActive == false }">
-						<input type="submit" value="${user.isActive}">
-					</c:if>
-				</form>
-				</td>
+
+	<td>
+  <form action="management" method="post">
+    <input type="hidden" name="userId" value="${user.id}" />
+    <c:if test="${user.isActive == true}">
+      <input type="hidden" name="isActive" value="false" />
+      <input type="submit" value="停止" />
+    </c:if>
+    <c:if test="${user.isActive == false}">
+      <input type="hidden" name="isActive" value="true" />
+      <input type="submit" value="復活" />
+    </c:if>
+  </form>
+</td>
+
+
+
+
+
+
+
+
+
 
 			</tr>
 		</c:forEach>

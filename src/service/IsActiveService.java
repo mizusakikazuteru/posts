@@ -4,20 +4,22 @@ import static util.CloseableUtil.*;
 import static util.DBUtil.*;
 
 import java.sql.Connection;
-import java.util.List;
 
 import beans.User;
 import dao.UserDao;
 
 public class IsActiveService {
 
-	public List<User> getIsActive() {
+
+
+	public void register(User isactive) {
 
 		Connection connection = null;
 
 		try {
 			connection = getConnection();
-		return UserDao.getIsActive(connection);
+			UserDao userDao = new UserDao();
+			UserDao.updates(connection, isactive);
 
 		} finally {
 			close(connection);

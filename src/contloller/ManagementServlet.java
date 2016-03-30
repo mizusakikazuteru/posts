@@ -44,13 +44,13 @@ public class ManagementServlet extends HttpServlet {
 //		}
 
 		UserService users = new UserService();
-		IsActiveService isactive = new IsActiveService();
+
 
 		List<User> userList = users.getUser();
-		List<User> isActive = isactive.getIsActive();
+
 
 		req.setAttribute("userList", userList);
-		req.setAttribute("isActive", isActive);
+
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
 		dispatcher.forward(req, res);
@@ -73,6 +73,11 @@ public class ManagementServlet extends HttpServlet {
 
 		boolean isActive = Boolean.getBoolean(req.getParameter("isActive"));
 		users.setIsActive(isActive);
+
+
+		new IsActiveService().register(users);
+
+
 
 		res.sendRedirect("management");
 		RequestDispatcher dispatcher = req.getRequestDispatcher("management");
