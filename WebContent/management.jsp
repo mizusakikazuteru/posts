@@ -24,18 +24,15 @@
 				<td width="25%">ログインID:<c:out value="${user.loginId}" /></td>
 				<td width="25%">名前:<c:out value="${user.name}" /></td>
 
-				<td><form action="management" method="post"></td>
-				<c:choose>
-					<c:when test="${user.id },${user.isActive == true }">
-						<td><input type="submit"
-							name="isactive" value="停止"></td>
-					</c:when>
-					<c:otherwise>
-						<td ><input type="submit"
-							name="isactive" value="復活"></td>
-					</c:otherwise>
-				</c:choose>
+				<td><form action="management" method="post">
+					<c:if test="${user.isActive == (true || false) && ( !true || !false ) }" >
+						<input type="hidden" name="isactive" value="${user.id },${user.isActive == true }">
+						<input type="hidden" name="isactive" value="${user.id },${user.isActive == false }">
+						<input type="submit" value="${user.isActive}">
+					</c:if>
 				</form>
+				</td>
+
 			</tr>
 		</c:forEach>
 	</table>
