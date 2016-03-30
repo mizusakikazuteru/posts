@@ -64,7 +64,7 @@ public class ManagementServlet extends HttpServlet {
 		User user = (User) session.getAttribute("loginUser");
 
 		User users = new User();
-
+aaaa
 		int Id =Integer.parseInt(req.getParameter("Id"));
 
 		users.setId(Id);
