@@ -102,34 +102,18 @@ public class UserService {
 			close(connection);
 		}
 	}
-
 	//ユーザー復活・停止の有無
-	public void updates(User user) {
+	public void updates(User users) {
 
 		Connection connection = null;
 
 		try {
 			connection = getConnection();
 			UserDao userDao = new UserDao();
-			UserDao.updates(connection, user);
+			UserDao.updates(connection, users);
 
 		} finally {
 			close(connection);
 		}
 	}
-
-	public List<User> isActiveUser() {
-		Connection connection = null;
-		try {
-			connection = getConnection();
-
-			return UserDao.getisActiveUser(connection);
-		} catch (Error e) {
-		} finally {
-			close(connection);
-
-		}
-		return null;
-	}
-
 }

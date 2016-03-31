@@ -76,4 +76,6 @@ public class User implements Serializable {
 	public void setIsActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
+
 }
