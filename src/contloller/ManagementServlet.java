@@ -59,11 +59,8 @@ public class ManagementServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		UserService userService = new UserService();
-		List<User> userList = UserService.getisActive();
-
+		User userList = UserService.getisActive();
 		req.setAttribute("userList", userList);
-
-
 
 		userList.setIsActive(req.getParameter("isActive"));
 

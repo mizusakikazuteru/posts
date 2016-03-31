@@ -116,7 +116,7 @@ public class UserService {
 			close(connection);
 		}
 	}
-	public static List<User> getisActive() {
+	public static User getisActive() {
 
 		Connection connection = null;
 

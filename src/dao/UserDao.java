@@ -268,7 +268,7 @@ public class UserDao {
 
 
 	}
-	public static List<User> getisActive(Connection connection) {
+	public static User getisActive(Connection connection) {
 
 		PreparedStatement ps = null;
 
@@ -287,16 +287,16 @@ public class UserDao {
 		}
 	}
 
-	private static List<User> toIsActiveList(ResultSet rs) throws SQLException {
+	private static User toIsActiveList(ResultSet rs) throws SQLException {
 
-		List<User> ret = new ArrayList<User>();
+		User ret = new User();
 
 		try {
 			while (rs.next()) {
 				User user = new User();
 				user.setId(rs.getInt("id"));
 				user.setIsActive(rs.getString("is_active"));
-				ret.add(user);
+
 
 			}
 			return ret;
