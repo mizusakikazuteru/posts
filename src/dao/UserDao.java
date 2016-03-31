@@ -57,7 +57,7 @@ public class UserDao {
 				String name = rs.getString("name");
 				String branchId = rs.getString("branch_id");
 				String departmentId = rs.getString("department_id");
-				//String isActive = rs.getString("is_active");
+				String isActive = rs.getString("is_active");
 
 				user.setId(id);
 				user.setLoginId(loginId);
@@ -65,7 +65,7 @@ public class UserDao {
 				user.setName(name);
 				user.setBranchId(branchId);
 				user.setDepartmentId(departmentId);
-				//user.setIsActive(isActive);
+				user.setIsActive(isActive);
 
 				ret.add(user);
 
