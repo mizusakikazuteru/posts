@@ -58,16 +58,16 @@ public class ManagementServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		//UserService userService = new UserService();
-		//List<User> userList = UserService.getisActive();
+		UserService userService = new UserService();
+		List<User> userList = UserService.getisActive();
 
-		//req.setAttribute("userList", userList);
+		req.setAttribute("userList", userList);
 
-//		User user = new User();
-//
-//		user.setIsActive(req.getParameter("isActive"));
-//
-//		new UserService().updates(user);
+
+
+		userList.setIsActive(req.getParameter("isActive"));
+
+		new UserService().updates(userList);
 
 
 
