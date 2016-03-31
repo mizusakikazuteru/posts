@@ -245,18 +245,18 @@ public class UserDao {
 	}
 
 	//ユーザー復活・停止
-	public static  void updates(Connection connection, User isactive) {
+	public static  void updates(Connection connection, User user) {
 
 		PreparedStatement ps = null;
 		try {
-			String sql = "UPDATE users SET ( " +
+			String sql = "UPDATE users SET  " +
 			"is_active = ? "+" WHERE"+" id = ?";
 
 
 			ps = connection.prepareStatement(sql);
 
-			ps.setInt(1, isactive.getId());
-			ps.setBoolean(2, isactive.getIsActive());
+			ps.setInt(1, user.getId());
+			ps.setBoolean(2, user.getIsActive());
 
 			ps.executeUpdate();
 

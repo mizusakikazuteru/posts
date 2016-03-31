@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.User;
-import service.IsActiveService;
+import exception.NoRowsUpdatedRuntimeException;
 import service.UserService;
 
 @WebServlet("/management")
@@ -22,67 +22,78 @@ public class ManagementServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
 		User user = (User) req.getSession().getAttribute("loginUser");
-//		// 支店コード１/支店名本社ならtrue
-//		HttpSession session = req.getSession();
-//
-//		String branchId = user.getBranchId();
-//
-//		// ManagementService manegementService = new ManagementService();
-//
-//		// Branch id = manegementService.branch(branchId);
-//
-//		if ("1".equals(branchId)) {
-//
-//			session.setAttribute("branch", branchId);
-//			res.sendRedirect("management.jsp");
-//		} else {
-//
-//			List<String> messages = new ArrayList<String>();
-//			messages.add("管理者権限がありません。");
-//			session.setAttribute("errorMessages", messages);
-//			res.sendRedirect("home");
-//		}
+		// // 支店コード１/支店名本社ならtrue
+		HttpSession session = req.getSession();
+		//
+		// String branchId = user.getBranchId();
+		//
+		// // ManagementService manegementService = new ManagementService();
+		//
+		// // Branch id = manegementService.branch(branchId);
+		//
+		// if ("1".equals(branchId)) {
+		//
+		// session.setAttribute("branch", branchId);
+		// res.sendRedirect("management.jsp");
+		// } else {
+		//
+		// List<String> messages = new ArrayList<String>();
+		// messages.add("管理者権限がありません。");
+		// session.setAttribute("errorMessages", messages);
+		// res.sendRedirect("home");
+		// }
 
 		UserService users = new UserService();
 
-
 		List<User> userList = users.getUser();
 
+		User loginUser = (User) session.getAttribute("loginUser");
 
 		req.setAttribute("userList", userList);
 
+		if (session.getAttribute("isativeUser") == null) {
+			User isactiveUser = new UserService().getUser(loginUser.getId());
+			// 初回のみ情報をbeanからUser情報を取ってくる
+			session.setAttribute("isactiveUser", isactiveUser);
+		}
 
 		RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
 		dispatcher.forward(req, res);
 
 	}
 
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse res)
+			throws ServletException, IOException {
 
 		HttpSession session = req.getSession();
 
-		User user = (User) session.getAttribute("loginUser");
+		User isActiveUser = getisActiveUser(req, res);
 
-		User users = new User();
+		session.setAttribute("IsActiveUser", isActiveUser);
+		try {
+			new UserService().updates(isActiveUser);
+			res.sendRedirect("management");
+		} catch (NoRowsUpdatedRuntimeException e) {
+			session.removeAttribute("isActiveUser");
 
-		int Id =Integer.parseInt(req.getParameter("Id"));
-
-		users.setId(Id);
-		users.setLoginId(req.getParameter("loginId"));
-		users.setName(req.getParameter("name"));
-
-		boolean isActive = Boolean.getBoolean(req.getParameter("isActive"));
-		users.setIsActive(isActive);
-
-
-		new IsActiveService().register(users);
-
-
-
-		res.sendRedirect("management");
-		RequestDispatcher dispatcher = req.getRequestDispatcher("management");
-		dispatcher.forward(req, res);
+			res.sendRedirect("management");
+		}
 
 	}
+	// ユーザー編集の為の情報
+	private User getIsActiveUser(HttpServletRequest req) throws IOException, ServletException {
+
+		HttpSession session = req.getSession();
+		User IsActiveUser = (User) session.getAttribute("editUser");
+
+		boolean isActive = Boolean.getBoolean(req.getParameter("isActive"));
+		IsActiveUser.setIsActive(isActive);
+		return IsActiveUser;
+	}
+
+	// req.sendRedirect("management");
+	// RequestDispatcher dispatcher = req.getRequestDispatcher("management");
+	// dispatcher.forward(req, res);
 
 }
