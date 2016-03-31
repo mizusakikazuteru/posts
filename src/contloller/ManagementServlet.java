@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import beans.User;
 import service.UserService;
@@ -58,21 +57,17 @@ public class ManagementServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+		UserService userService = new UserService();
+		List<User> userList = UserService.getisActive();
 
-		HttpSession session = req.getSession();
+		req.setAttribute("userList", userList);
 
-		User user = (User) session.getAttribute("loginUser");
+		User user = new User();
 
-		List<User> userList = user.updates();
-
-
-		boolean isActive = Boolean.getBoolean(req.getParameter("isActive"));
-		userList.setIsActive(isActive);
+		user.setIsActive(req.getParameter("isActive"));
+		new UserService().updates(user);
 
 
-		//new UserService().register(userList);
-
-		req.setAttribute("isActive", isActive);
 
 		res.sendRedirect("management");
 //		RequestDispatcher dispatcher = req.getRequestDispatcher("management");

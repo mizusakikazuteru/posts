@@ -57,7 +57,7 @@ public class UserDao {
 				String name = rs.getString("name");
 				String branchId = rs.getString("branch_id");
 				String departmentId = rs.getString("department_id");
-				boolean isActive = rs.getBoolean("is_active");
+				//String isActive = rs.getString("is_active");
 
 				user.setId(id);
 				user.setLoginId(loginId);
@@ -65,7 +65,7 @@ public class UserDao {
 				user.setName(name);
 				user.setBranchId(branchId);
 				user.setDepartmentId(departmentId);
-				user.setIsActive(isActive);
+				//user.setIsActive(isActive);
 
 				ret.add(user);
 
@@ -256,7 +256,7 @@ public class UserDao {
 			ps = connection.prepareStatement(sql);
 
 			ps.setInt(1, user.getId());
-			ps.setBoolean(2, user.getIsActive());
+			ps.setString(2, user.getIsActive());
 
 			ps.executeUpdate();
 
@@ -267,6 +267,42 @@ public class UserDao {
 		}
 
 
+	}
+	public static List<User> getisActive(Connection connection) {
+
+		PreparedStatement ps = null;
+
+		try {
+			String sql = "SELECT * FROM users";
+
+			ps = connection.prepareStatement(sql);
+
+			ResultSet rs = ps.executeQuery();
+
+			return toIsActiveList(rs);
+		} catch (SQLException e) {
+			throw new SQLRuntimeException(e);
+		} finally {
+			close(ps);
+		}
+	}
+
+	private static List<User> toIsActiveList(ResultSet rs) throws SQLException {
+
+		List<User> ret = new ArrayList<User>();
+
+		try {
+			while (rs.next()) {
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setIsActive(rs.getString("is_active"));
+				ret.add(user);
+
+			}
+			return ret;
+		} finally {
+			close(rs);
+		}
 	}
 }
 

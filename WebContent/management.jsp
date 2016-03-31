@@ -26,7 +26,7 @@
 
 
 	<td>
-  <form action="management" method="post">
+  <form action="management" method="get">
     <input type="hidden" name="userId" value="${user.id}" />
     <c:if test="${user.isActive == true}">
       <input type="hidden" name="isActive" value="false" />

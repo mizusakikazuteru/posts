@@ -116,4 +116,16 @@ public class UserService {
 			close(connection);
 		}
 	}
+	public static List<User> getisActive() {
+
+		Connection connection = null;
+
+		try {
+			connection = getConnection();
+			return UserDao.getisActive(connection);
+		} finally {
+			close(connection);
+		}
+	}
+
 }
