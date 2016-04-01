@@ -57,7 +57,7 @@ public class UserDao {
 				String name = rs.getString("name");
 				String branchId = rs.getString("branch_id");
 				String departmentId = rs.getString("department_id");
-				String isActive = rs.getString("is_active");
+				Boolean isActive = rs.getBoolean("is_active");
 
 				user.setId(id);
 				user.setLoginId(loginId);
@@ -253,10 +253,11 @@ public class UserDao {
 
 			ps = connection.prepareStatement(sql);
 
-			ps.setString(1, user.getIsActive());
+			ps.setBoolean(1, user.getIsActive());
 			ps.setInt(2, user.getId());
 
-			ps.executeUpdate();
+			//int i= ps.executeUpdate();
+			 ps.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);

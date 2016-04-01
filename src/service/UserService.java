@@ -107,7 +107,6 @@ public class UserService {
 
 		try {
 			connection = getConnection();
-			UserDao userDao = new UserDao();
 			UserDao.updates(connection, user);
 			commit(connection);
 

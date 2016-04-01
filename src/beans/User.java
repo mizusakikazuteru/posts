@@ -12,7 +12,7 @@ public class User implements Serializable {
 	private String name;
 	private String branchId;
 	private String departmentId;
-	private String isActive;
+	private Boolean isActive;
 
 	// ①ID
 	public int getId() {
@@ -69,11 +69,11 @@ public class User implements Serializable {
 	}
 
 	// ⑥アカウント
-	public String getIsActive() {
+	public Boolean getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(String isActive) {
+	public void setIsActive(Boolean isActive) {
 		this.isActive = isActive;
 	}
 
