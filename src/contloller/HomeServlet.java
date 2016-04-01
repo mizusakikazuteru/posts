@@ -29,6 +29,9 @@ public class HomeServlet extends HttpServlet {
 		List<Post> posts = new PostService().getPost();
 		List<Comment> comments = new CommentService().getComments();
 
+
+
+
 		//posts.setCategory(req.getParameter("category"));
 
 

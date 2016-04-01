@@ -107,6 +107,7 @@ h3 {
 			<c:forEach items="${comments}" var="commentList">
 				<table>
 				<tr>
+
 				<th width="50%">投稿者:<c:out value="${commentList.id}" /></th>
 				<th width="50%">投稿日時:<c:out value="${commentList.createdAt}" /></th>
 				</tr>

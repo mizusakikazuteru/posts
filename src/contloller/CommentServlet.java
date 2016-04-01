@@ -34,7 +34,7 @@ public class CommentServlet extends HttpServlet {
 			String postId = req.getParameter("postid");
 
 			Comment comment = new Comment();
-			//Post posts = new Post();
+
 
 			comment.setText(req.getParameter("text"));
 			comment.setUserId(user.getId());
