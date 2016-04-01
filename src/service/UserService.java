@@ -51,8 +51,6 @@ public class UserService {
 		return null;
 	}
 
-
-
 	// ユーザー情報の内容編集
 	public void update(User user) {
 
@@ -78,7 +76,6 @@ public class UserService {
 		}
 	}
 
-
 	// ユーザー情報を取得
 	public User getUser(int userId) {
 
@@ -102,30 +99,26 @@ public class UserService {
 			close(connection);
 		}
 	}
-	//ユーザー復活・停止の有無
-	public void updates(User users) {
+
+	// ユーザー復活・停止の有無
+	public void updates(User user) {
 
 		Connection connection = null;
 
 		try {
 			connection = getConnection();
 			UserDao userDao = new UserDao();
-			UserDao.updates(connection, users);
+			UserDao.updates(connection, user);
+			commit(connection);
 
+		} catch (RuntimeException e) {
+			rollback(connection);
+			throw e;
+		} catch (Error e) {
+			rollback(connection);
+			throw e;
 		} finally {
 			close(connection);
 		}
 	}
-	public static User getisActive() {
-
-		Connection connection = null;
-
-		try {
-			connection = getConnection();
-			return UserDao.getisActive(connection);
-		} finally {
-			close(connection);
-		}
-	}
-
 }

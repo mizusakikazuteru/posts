@@ -31,7 +31,7 @@ public class UserDao {
 
 			ResultSet rs = ps.executeQuery();
 
-			//rs = ps.executeQuery();
+			// rs = ps.executeQuery();
 			return toUsersList(rs);
 
 		} catch (SQLException e) {
@@ -244,68 +244,26 @@ public class UserDao {
 		}
 	}
 
-	//ユーザー復活・停止
-	public static  void updates(Connection connection, User user) {
+	// ユーザー復活・停止
+	public static void updates(Connection connection, User user) {
 
 		PreparedStatement ps = null;
 		try {
-			String sql = "UPDATE users SET  " +
-			"is_active = ? "+" WHERE"+" id = ?";
-
+			String sql = "UPDATE users SET  " + "is_active = ? " + " WHERE" + " id = ?";
 
 			ps = connection.prepareStatement(sql);
 
 			ps.setString(1, user.getIsActive());
 			ps.setInt(2, user.getId());
 
-
 			ps.executeUpdate();
-			//DBUtil.commit(connection);
+
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {
 			close(ps);
 		}
 
-
-	}
-	public static User getisActive(Connection connection) {
-
-		PreparedStatement ps = null;
-
-		try {
-			String sql = "SELECT * FROM users";
-
-			ps = connection.prepareStatement(sql);
-
-			ResultSet rs = ps.executeQuery();
-
-			return toIsActiveList(rs);
-		} catch (SQLException e) {
-			throw new SQLRuntimeException(e);
-		} finally {
-			close(ps);
-		}
 	}
 
-	private static User toIsActiveList(ResultSet rs) throws SQLException {
-
-		User ret = new User();
-
-		try {
-			while (rs.next()) {
-				User user = new User();
-				user.setId(rs.getInt("id"));
-				user.setIsActive(rs.getString("is_active"));
-
-
-			}
-			return ret;
-		} finally {
-			close(rs);
-		}
-	}
 }
-
-
-
