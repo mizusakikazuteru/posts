@@ -26,14 +26,14 @@
 
 
 	<td>
-  <form action="management" method="get">
+  <form action="management" method="post">
     <input type="hidden" name="userId" value="${user.id}" />
-    <c:if test="${user.isActive == true}">
-      <input type="hidden" name="isActive" value="false" />
+    <c:if test="${user.isActive == 1}">
+      <input type="hidden" name="isActive" value="0" />
       <input type="submit" value="停止" />
     </c:if>
-    <c:if test="${user.isActive == false}">
-      <input type="hidden" name="isActive" value="true" />
+    <c:if test="${user.isActive == 0}">
+      <input type="hidden" name="isActive" value="1" />
       <input type="submit" value="復活" />
     </c:if>
   </form>

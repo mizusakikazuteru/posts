@@ -31,7 +31,7 @@ public class UserDao {
 
 			ResultSet rs = ps.executeQuery();
 
-			rs = ps.executeQuery();
+			//rs = ps.executeQuery();
 			return toUsersList(rs);
 
 		} catch (SQLException e) {
@@ -255,11 +255,12 @@ public class UserDao {
 
 			ps = connection.prepareStatement(sql);
 
-			ps.setInt(1, user.getId());
-			ps.setString(2, user.getIsActive());
+			ps.setString(1, user.getIsActive());
+			ps.setInt(2, user.getId());
+
 
 			ps.executeUpdate();
-
+			//DBUtil.commit(connection);
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {

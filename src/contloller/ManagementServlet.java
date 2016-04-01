@@ -19,7 +19,7 @@ public class ManagementServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		User user = (User) req.getSession().getAttribute("loginUser");
+//		User user = (User) req.getSession().getAttribute("loginUser");
 //		// 支店コード１/支店名本社ならtrue
 //		HttpSession session = req.getSession();
 //
@@ -58,15 +58,17 @@ public class ManagementServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
-		UserService userService = new UserService();
-		User userList = UserService.getisActive();
-		req.setAttribute("userList", userList);
+		//formのname属性指定（getParameter)で取り出す
+		String userId = req.getParameter("userId");
+		String isActive = req.getParameter("isActive");
 
-		userList.setIsActive(req.getParameter("isActive"));
+		User user = new User();
 
-		new UserService().updates(userList);
+		int intUserId = Integer.parseInt(userId);
+		user.setId(intUserId);
+		user.setIsActive(isActive);
 
-
+		new UserService().updates(user);
 
 		res.sendRedirect("management");
 //		RequestDispatcher dispatcher = req.getRequestDispatcher("management");
