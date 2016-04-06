@@ -32,7 +32,7 @@ public class CommentServlet extends HttpServlet {
 		if (isValid(req, comments) == true) {
 
 			User user = (User) session.getAttribute("loginUser");
-			Post post = (Post) session.getAttribute("postList");
+			Post post = (Post) session.getAttribute("posts");
 
 			Comment comment = new Comment();
 
@@ -56,9 +56,10 @@ public class CommentServlet extends HttpServlet {
 
 	private boolean isValid(HttpServletRequest req, List<String> comments) {
 
-		String comment = req.getParameter("comment");
+		String text = req.getParameter("text");
+		String postid = req.getParameter("postid");
 
-		if (StringUtils.isEmpty(comment) == true) {
+		if (StringUtils.isEmpty(text) == true) {
 			comments.add("コメントを入力してください");
 		}
 		if (500 <  comments.size()) {
