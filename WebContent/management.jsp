@@ -7,7 +7,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ユーザー管理画面</title>
+<script type="text/javascript">
+function
+resurrection(){
+	window.alert('ユーザー情報を復活させますか？');
+}
+function stop(){
+	window.alert('ユーザー情報を停止させますか？');
+}
 
+</script>
 
 </head>
 <body>
@@ -29,11 +38,12 @@
   <form action="management" method="post">
     <input type="hidden" name="userId" value="${user.id}" />
     <c:if test="${user.isActive == 1}">
-      <input type="hidden" name="isActive" value="0" />
+      <input type="hidden" name="isActive" value="0" onClick="
+    	  stop()" />
       <input type="submit" value="停止" />
     </c:if>
     <c:if test="${user.isActive == 0}">
-      <input type="hidden" name="isActive" value="1" />
+      <input type="hidden" name="isActive" value="1" onClick="resurrection()" />
       <input type="submit" value="復活" />
     </c:if>
   </form>
