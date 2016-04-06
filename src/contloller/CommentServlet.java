@@ -14,14 +14,15 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import beans.Comment;
-import beans.Post;
 import beans.User;
 import service.CommentService;
+
 
 @WebServlet("/comment")
 public class CommentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	String postid = null;
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse res)
 			throws IOException, ServletException {
@@ -32,14 +33,18 @@ public class CommentServlet extends HttpServlet {
 		if (isValid(req, comments) == true) {
 
 			User user = (User) session.getAttribute("loginUser");
-			Post post = (Post) session.getAttribute("posts");
+
 
 			Comment comment = new Comment();
 
 
 			comment.setText(req.getParameter("text"));
 			comment.setUserId(user.getId());
-			comment.setPostId(post.getId());
+
+			String PostId = req.getParameter("postid");
+
+			int intPostId = Integer.parseInt(PostId);
+			comment.setPostId(intPostId);
 
 			new CommentService().register(comment);
 
@@ -57,7 +62,7 @@ public class CommentServlet extends HttpServlet {
 	private boolean isValid(HttpServletRequest req, List<String> comments) {
 
 		String text = req.getParameter("text");
-		String postid = req.getParameter("postid");
+		postid = req.getParameter("postid");
 
 		if (StringUtils.isEmpty(text) == true) {
 			comments.add("コメントを入力してください");
