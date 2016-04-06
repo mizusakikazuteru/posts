@@ -55,8 +55,14 @@ public class SignUpServlet extends HttpServlet {
 			user.setLoginId(req.getParameter("loginId"));
 			user.setPassword(req.getParameter("password"));
 			user.setName(req.getParameter("name"));
-			user.setBranchId(req.getParameter("branchId"));
-			user.setDepartmentId(req.getParameter("departmentId"));
+
+			int intBranchId = Integer.parseInt("branchId");
+			user.setBranchId(intBranchId);
+
+			int intDepartmentId = Integer.parseInt("departmentId");
+			user.setDepartmentId(intDepartmentId);
+
+
 
 			new UserService().register(user);
 			// フォワード

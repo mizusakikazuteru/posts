@@ -55,9 +55,9 @@ public class UserDao {
 				String loginId = rs.getString("login_id");
 				String password = rs.getString("password");
 				String name = rs.getString("name");
-				String branchId = rs.getString("branch_id");
-				String departmentId = rs.getString("department_id");
-				Boolean isActive = rs.getBoolean("is_active");
+				int branchId = rs.getInt("branch_id");
+				int departmentId = rs.getInt("department_id");
+				int isActive = rs.getInt("is_active");
 
 				user.setId(id);
 				user.setLoginId(loginId);
@@ -123,8 +123,8 @@ public class UserDao {
 				String loginId = rs.getString("login_id");
 				String password = rs.getString("password");
 				String name = rs.getString("name");
-				String branchId = rs.getString("branch_id");
-				String departmentId = rs.getString("department_id");
+				int branchId = rs.getInt("branch_id");
+				int departmentId = rs.getInt("department_id");
 
 				User user = new User();
 				user.setId(id);
@@ -167,8 +167,8 @@ public class UserDao {
 			ps.setString(1, user.getLoginId());
 			ps.setString(2, user.getPassword());
 			ps.setString(3, user.getName());
-			ps.setString(4, user.getBranchId());
-			ps.setString(5, user.getDepartmentId());
+			ps.setInt(4, user.getBranchId());
+			ps.setInt(5, user.getDepartmentId());
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -202,8 +202,8 @@ public class UserDao {
 			ps.setString(1, user.getLoginId());
 			ps.setString(2, user.getPassword());
 			ps.setString(3, user.getName());
-			ps.setString(4, user.getBranchId());
-			ps.setString(5, user.getDepartmentId());
+			ps.setInt(4, user.getBranchId());
+			ps.setInt(5, user.getDepartmentId());
 
 			int count = ps.executeUpdate();
 			if (count == 0) {
@@ -253,7 +253,7 @@ public class UserDao {
 
 			ps = connection.prepareStatement(sql);
 
-			ps.setBoolean(1, user.getIsActive());
+			ps.setInt(1, user.getIsActive());
 			ps.setInt(2, user.getId());
 
 			//int i= ps.executeUpdate();

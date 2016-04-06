@@ -62,8 +62,8 @@ public class ManagementServlet extends HttpServlet {
 
 		int intUserId = Integer.parseInt(userId);
 		user.setId(intUserId);
-		Boolean booisActive = Boolean.getBoolean(isActive);
-		user.setIsActive(booisActive);
+		int intIsActive = Integer.parseInt(isActive);
+		user.setIsActive(intIsActive);
 
 
 		new UserService().updates(user);

@@ -10,9 +10,9 @@ public class User implements Serializable {
 	private String loginId;
 	private String password;
 	private String name;
-	private String branchId;
-	private String departmentId;
-	private Boolean isActive;
+	private int branchId;
+	private int departmentId;
+	private int isActive;
 
 	// ①ID
 	public int getId() {
@@ -51,29 +51,29 @@ public class User implements Serializable {
 	}
 
 	// ④支店番号
-	public String getBranchId() {
+	public int getBranchId() {
 		return branchId;
 	}
 
-	public void setBranchId(String branchId) {
+	public void setBranchId(int branchId) {
 		this.branchId = branchId;
 	}
 
 	// ⑤部署・役職
-	public String getDepartmentId() {
+	public int getDepartmentId() {
 		return departmentId;
 	}
 
-	public void setDepartmentId(String departmentId) {
+	public void setDepartmentId(int departmentId) {
 		this.departmentId = departmentId;
 	}
 
 	// ⑥アカウント
-	public Boolean getIsActive() {
+	public int getIsActive() {
 		return isActive;
 	}
 
-	public void setIsActive(Boolean isActive) {
+	public void setIsActive(int isActive) {
 		this.isActive = isActive;
 	}
 

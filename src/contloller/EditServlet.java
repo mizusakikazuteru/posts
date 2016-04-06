@@ -87,8 +87,11 @@ public class EditServlet extends HttpServlet {
 		editUser.setLoginId(req.getParameter("loginId"));
 		editUser.setPassword(req.getParameter("password"));
 		editUser.setName(req.getParameter("name"));
-		editUser.setBranchId(req.getParameter("branchId"));
-		editUser.setDepartmentId(req.getParameter("departmentId"));
+		int intBranchId = Integer.parseInt("branchId");
+		editUser.setBranchId(intBranchId);
+
+		int intDepartmentId = Integer.parseInt("departmentId");
+		editUser.setDepartmentId(intDepartmentId);
 		return editUser;
 
 	}

@@ -6,26 +6,35 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import beans.Category;
+import beans.Post;
 import exception.SQLRuntimeException;
 
 public class CategoryDao {
 
-	public List<Category> getCategories(Connection connection) {
+	// カテゴリー検索
+	public List<Post> getAllCategories(Connection connection, String loginId, String category, int num) {
 
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT * FROM users WHERE( concat(postings) LIKE ‘%id%’) ORDER BY id DESC";
+			StringBuilder sql = new StringBuilder();
 
-			ps = connection.prepareStatement(sql);
+			sql.append(" SELECT category FROM postings INNER JOIN users ON postings.user_id = ?"
+					+ " where category LIKE   ?   ");
+			sql.append(" ORDER BY created_at DESC limit " + num);
+
+
+			ps = connection.prepareStatement(sql.toString());
+			ps.setString(1, loginId);
+			ps.setString(2, "%"+category+"%");
 
 			ResultSet rs = ps.executeQuery();
-
-			return toCategoryList(rs);
+			List<Post> ret = toCategoryList(rs);
+			return ret;
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {
@@ -33,23 +42,33 @@ public class CategoryDao {
 		}
 	}
 
-	private List<Category> toCategoryList(ResultSet rs) throws SQLException {
+	// カテゴリー検索
+	private List<Post> toCategoryList(ResultSet rs) throws SQLException {
 
-		List<Category> ret = new ArrayList<Category>();
-
+		List<Post> ret = new ArrayList<Post>();
 		try {
 			while (rs.next()) {
+
+				Post categories = new Post();
+				int id = rs.getInt("id");
+				String subject = rs.getString("subject");
+				String text = rs.getString("text");
 				String category = rs.getString("category");
+				Timestamp createdAt = rs.getTimestamp("created_at");
+				String name = rs.getString("name");
 
-				Category ctd = new Category();
-				ctd.setCategory(category);
+				categories.setId(id);
+				categories.setSubject(subject);
+				categories.setText(text);
+				categories.setCategory(category);
+				categories.setCreatedAt(createdAt);
+				categories.setName(name);
 
-				ret.add(ctd);
+				ret.add(categories);
 			}
 			return ret;
 		} finally {
 			close(rs);
 		}
 	}
-
 }

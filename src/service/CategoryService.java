@@ -6,18 +6,35 @@ import static util.DBUtil.*;
 import java.sql.Connection;
 import java.util.List;
 
-import beans.Category;
+import beans.Post;
 import dao.CategoryDao;
 
 public class CategoryService {
 
-	public List<Category> getCategories() {
-		Connection connection = null;
-		try {
-			connection = getConnection();
-			return CategoryDao.getCategories(connection);
-		} finally {
-			close(connection);
+	// カテゴリー検索
+	private static final int LIMIT_NUM = 1000;
+
+		public List<Post> getCategory(String loginId,String category ) {
+
+			Connection connection = null;
+			try {
+				connection = getConnection();
+
+				CategoryDao categoryDao = new CategoryDao();
+				List<Post> ret = categoryDao.getAllCategories(connection, loginId,  category, LIMIT_NUM);
+
+				commit(connection);
+
+				return ret;
+			} catch (RuntimeException e) {
+				rollback(connection);
+				throw e;
+			} catch (Error e) {
+				rollback(connection);
+				throw e;
+			} finally {
+				close(connection);
+			}
 		}
-	}
+
 }
