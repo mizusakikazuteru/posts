@@ -50,7 +50,7 @@ public class CommentDao {
 				String text = rs.getString("text");
 				Timestamp createdAt = rs.getTimestamp("created_at");
 				int userId = rs.getInt("user_id");
-				String postId = rs.getString("posting_id");
+				int postId = rs.getInt("posting_id");
 
 				comment.setId(id);
 				comment.setText(text);
@@ -90,7 +90,7 @@ public class CommentDao {
 
 					ps.setString(1, comment.getText());
 					ps.setInt(2, comment.getUserId());
-					ps.setString(3, comment.getPostId());
+					ps.setInt(3, comment.getPostId());
 
 					ps.executeUpdate();
 				} catch (SQLException e) {

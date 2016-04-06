@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 
 import beans.Comment;
+import beans.Post;
 import beans.User;
 import service.CommentService;
 
@@ -31,14 +32,14 @@ public class CommentServlet extends HttpServlet {
 		if (isValid(req, comments) == true) {
 
 			User user = (User) session.getAttribute("loginUser");
-			String postId = req.getParameter("postid");
+			Post post = (Post) session.getAttribute("postList");
 
 			Comment comment = new Comment();
 
 
 			comment.setText(req.getParameter("text"));
 			comment.setUserId(user.getId());
-			comment.setPostId(req.getParameter("postid"));
+			comment.setPostId(post.getId());
 
 			new CommentService().register(comment);
 
