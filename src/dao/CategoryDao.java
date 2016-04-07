@@ -23,7 +23,7 @@ public class CategoryDao {
 		try {
 			StringBuilder sql = new StringBuilder();
 
-			sql.append(" SELECT * FROM postings where category LIKE '%%' ");
+			sql.append(" SELECT * FROM postings INNER JOIN users where category LIKE '%%' ");
 			sql.append(" ORDER BY created_at DESC limit " + num);
 
 
@@ -31,8 +31,8 @@ public class CategoryDao {
 			ps.setString(1, "%"+category+"%");
 
 			ResultSet rs = ps.executeQuery();
-			List<Post> ret = toCategoryList(rs);
-			return ret;
+			//List<Post> categoryList = toCategoryList(rs);
+			return toCategoryList(rs);
 		} catch (SQLException e) {
 			throw new SQLRuntimeException(e);
 		} finally {
@@ -47,13 +47,14 @@ public class CategoryDao {
 		try {
 			while (rs.next()) {
 
-				Post categories = new Post();
 				int id = rs.getInt("id");
 				String subject = rs.getString("subject");
 				String text = rs.getString("text");
 				String category = rs.getString("category");
 				Timestamp createdAt = rs.getTimestamp("created_at");
 				String name = rs.getString("name");
+
+				Post categories = new Post();
 
 				categories.setId(id);
 				categories.setSubject(subject);

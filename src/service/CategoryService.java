@@ -21,11 +21,11 @@ public class CategoryService {
 				connection = getConnection();
 
 				CategoryDao categoryDao = new CategoryDao();
-				List<Post> ret = categoryDao.getAllCategories(connection, category, LIMIT_NUM);
+				List<Post> categories = categoryDao.getAllCategories(connection, category, LIMIT_NUM);
 
 				commit(connection);
 
-				return ret;
+				return categories;
 			} catch (RuntimeException e) {
 				rollback(connection);
 				throw e;
