@@ -16,21 +16,19 @@ import exception.SQLRuntimeException;
 public class CategoryDao {
 
 	// カテゴリー検索
-	public List<Post> getAllCategories(Connection connection, String loginId, String category, int num) {
+	public List<Post> getAllCategories(Connection connection, String category, int num) {
 
 		PreparedStatement ps = null;
 
 		try {
 			StringBuilder sql = new StringBuilder();
 
-			sql.append(" SELECT category FROM postings INNER JOIN users ON postings.user_id = ?"
-					+ " where category LIKE   ?   ");
+			sql.append(" SELECT * FROM postings where category LIKE '%%' ");
 			sql.append(" ORDER BY created_at DESC limit " + num);
 
 
 			ps = connection.prepareStatement(sql.toString());
-			ps.setString(1, loginId);
-			ps.setString(2, "%"+category+"%");
+			ps.setString(1, "%"+category+"%");
 
 			ResultSet rs = ps.executeQuery();
 			List<Post> ret = toCategoryList(rs);

@@ -14,14 +14,14 @@ public class CategoryService {
 	// カテゴリー検索
 	private static final int LIMIT_NUM = 1000;
 
-		public List<Post> getCategory(String loginId,String category ) {
+		public List<Post> getCategory(String category ) {
 
 			Connection connection = null;
 			try {
 				connection = getConnection();
 
 				CategoryDao categoryDao = new CategoryDao();
-				List<Post> ret = categoryDao.getAllCategories(connection, loginId,  category, LIMIT_NUM);
+				List<Post> ret = categoryDao.getAllCategories(connection, category, LIMIT_NUM);
 
 				commit(connection);
 

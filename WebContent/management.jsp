@@ -8,19 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>ユーザー管理画面</title>
 <script type="text/javascript">
-	/*
-	 function resurrection(flg) {
-
-	 if (window.confirm('ユーザー情報を復活させますか？')) {
-
-	 return true;
-	 } else {
-	 window.alert('キャンセルされました');
-
-	 return false;
-	 }
-	 }
-	 */
 
 	function check(flg) {
 

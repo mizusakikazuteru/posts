@@ -77,7 +77,7 @@ h3 {
 			<a href="logout">ログアウト</a>
 
 		</c:if>
-		<form action="home" method="get">
+		<form action="home" method="post">
         <label for="category">カテゴリー検索</label>
         <input type="text" name="category">
         <input type="submit" value="検索">
@@ -105,6 +105,8 @@ h3 {
 
 			<h2>コメント一覧</h2>
 			<c:forEach items="${comments}" var="commentList">
+			<c:if test="${commentList.postId == postList.id }">
+
 				<table>
 				<tr>
 
@@ -115,6 +117,7 @@ h3 {
 				<td colspan="4" align="left">本文:<c:out value="${commentList.text}" /></td>
 				</tr>
 				</table>
+			</c:if>
 			</c:forEach>
 			</c:forEach>
 </body>
