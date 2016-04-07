@@ -23,7 +23,7 @@ public class CategoryDao {
 		try {
 			StringBuilder sql = new StringBuilder();
 
-			sql.append(" SELECT * FROM postings INNER JOIN users where category LIKE '%%' ");
+			sql.append(" SELECT * FROM postings INNER JOIN users ON postings.user_id = users.id  where category LIKE  ? ");
 			sql.append(" ORDER BY created_at DESC limit " + num);
 
 
@@ -31,9 +31,12 @@ public class CategoryDao {
 			ps.setString(1, "%"+category+"%");
 
 			ResultSet rs = ps.executeQuery();
-			//List<Post> categoryList = toCategoryList(rs);
-			return toCategoryList(rs);
+			List<Post> categoryList = toCategoryList(rs);
+			System.out.println(categoryList);
+			return categoryList;
+
 		} catch (SQLException e) {
+
 			throw new SQLRuntimeException(e);
 		} finally {
 			close(ps);

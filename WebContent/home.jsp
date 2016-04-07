@@ -83,6 +83,11 @@ h3 {
         <input type="submit" value="検索">
         <input type="reset" value="クリア">
 		</form>
+		<form action="home" method="post">
+		<label for="category">日時検索</label>
+		<% String sysYear = (new java.text.SimpleDateFormat("yyyy").format(new java.util.Date())); %>
+
+		</form>
 		<c:forEach var="postList" items="${posts}">
 			<table>
 				<tr>
