@@ -78,14 +78,13 @@ h3 {
 			<a href="logout">ログアウト</a>
 
 		</c:if>
-		<form action="home" method="post">
+		<form action="category" method="post">
 			<label for="category">カテゴリー検索</label> <input type="text"
 				name="category"> <input type="submit" value="検索"> <input
 				type="reset" value="クリア">
 		</form>
 		<c:forEach var="categoryList" items="${categoryList}">
-			<c:if test="${ not empty categoryList .id == commentList.postId }">
-
+			<c:if test="${ not empty categoryList.id == commentList.postId }">
 				検索<c:out value="${categoryList.category}" />
 				<table>
 					<tr>
@@ -102,41 +101,33 @@ h3 {
 			<c:if test="${ not empty errorMessages }">
 
 			</c:if>
-
 		</c:forEach>
-
-
-
-
-
 
 		<form action="date" method="post">
-		<label for="createdAtasc">投稿日検索</label>
-		<select name="createdAtasc">
-			<c:forEach items="${dateAsc}" var="dateAsc">
+			<label for="createdAtasc">投稿日検索</label> <select name="createdAtasc">
+				<c:forEach items="${dateAsc}" var="dateAsc">
 
-				<option>
-					<fmt:formatDate value="${dateAsc.createdAt}" pattern="yyyy/MM/dd " />
-				</option>
-			</c:forEach>
-		</select> &nbsp ～ &nbsp
-		<select name="createdAtdesc">
-		<c:forEach items="${dateDesc}" var="dateDesc">
-			<option>
-				<fmt:formatDate value="${dateDesc.createdAt}" pattern="yyyy/MM/dd " />
-			</option>
+					<option>
+						<fmt:formatDate value="${dateAsc.createdAt}" pattern="yyyy/MM/dd " />
+					</option>
+				</c:forEach>
+			</select> &nbsp ～ &nbsp <select name="createdAtdesc">
+				<c:forEach items="${dateDesc}" var="dateDesc">
+					<option>
+						<fmt:formatDate value="${dateDesc.createdAt}"
+							pattern="yyyy/MM/dd " />
+					</option>
 
 
-		</c:forEach>
-		</select>
-		 <input type="submit" value="検索">
-		<input type="reset" value="クリア">
+				</c:forEach>
+			</select> <input type="submit" value="検索"> <input type="reset"
+				value="クリア">
 		</form>
 
 
 
 		<c:forEach var="dateList" items="${dateList}">
-			<c:if test="${ not empty dateList .id == commentList.postId }">
+			<c:if test="${ not empty dateList.id == commentList.postId }">
 
 				検索期間<c:out value="${dateList.createdAt}" />
 				<table>
@@ -147,7 +138,7 @@ h3 {
 						<th width="20%">カテゴリー:<c:out value="${dateList.category}" /></th>
 					<tr>
 						<td colspan="4" align="left">本文:<c:out
-								value="${postList.text}" /></td>
+								value="${dateList.text}" /></td>
 				</table>
 			</c:if>
 
@@ -156,25 +147,6 @@ h3 {
 			</c:if>
 
 		</c:forEach>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		<c:forEach var="postList" items="${posts}">
 			<table>

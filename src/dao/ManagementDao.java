@@ -23,7 +23,7 @@ public class ManagementDao {
 		PreparedStatement ps = null;
 
 		try {
-			String sql = "SELECT * FROM branches WHERE id=1";
+			String sql = "SELECT * FROM branches WHERE id ? ";
 
 
 			ps = connection.prepareStatement(sql);

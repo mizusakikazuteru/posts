@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,9 +64,15 @@ public class SignUpServlet extends HttpServlet {
 
 
 			new UserService().register(user);
+
+			session.setAttribute("signupUser", user);
+
+			res.sendRedirect("home");
+
+
 			// フォワード
-			RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
-			dispatcher.forward(req, res);
+//			RequestDispatcher dispatcher = req.getRequestDispatcher("management.jsp");
+//			dispatcher.forward(req, res);
 
 		} else {
 			session.setAttribute("errorMessages", messages);

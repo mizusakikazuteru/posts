@@ -51,7 +51,7 @@ td {
 			</div>
 			<c:remove var="errorMessages" scope="session" />
 		</c:if>
-		<form action="home" method="post">
+		<form action ="post"  method="post">
 			<br />
 			<table>
 				<tr>
