@@ -16,6 +16,7 @@ import beans.Post;
 import beans.User;
 import service.CategoryService;
 import service.CommentService;
+import service.DateService;
 import service.PostService;
 
 @WebServlet(urlPatterns = { "/home" })
@@ -25,30 +26,32 @@ public class HomeServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+		// 日付情報取得→jspへ表示
+		DateService dateAscService = new DateService();
+		List<Post> dateAsc = dateAscService.getDatesAsc();
+
+		req.setAttribute("dateAsc", dateAsc);
+
+		DateService dateDescService = new DateService();
+		List<Post> dateDesc = dateDescService.getDatesDesc();
+
+		req.setAttribute("dateDesc", dateDesc);
+
+
 
 		User user = (User) req.getSession().getAttribute("loginUser");
 
 		List<Post> posts = new PostService().getPost();
 		List<Comment> comments = new CommentService().getComments();
 
-
-		//if (isValid(req, category) == true) {
-
-//		Post cotegories = new Post();
-//		cotegories.setCategory(req.getParameter("category"));
-//
-//			// Post categories = CategoryService.getCategory( categories );
-//
-//			req.setAttribute("category", category);
-//		}
 		req.setAttribute("posts", posts);
 		req.setAttribute("comments", comments);
 
 		req.getRequestDispatcher("home.jsp").forward(req, res);
 	}
+
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res)
-			throws IOException, ServletException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
 
 		String category = req.getParameter("category");
 
@@ -57,18 +60,16 @@ public class HomeServlet extends HttpServlet {
 
 		HttpSession session = req.getSession();
 
-		if (categories != null) {
+		if ((categories.size() != 0)) {
 			session.setAttribute("categoryList", categories);
 			res.sendRedirect("home");
 
 		} else {
 			List<String> messages = new ArrayList<String>();
-			messages.add("検索に失敗しました。");
+			messages.add("該当の検索条件はありません。");
 			session.setAttribute("errorMessages", messages);
 
 			res.sendRedirect("home");
 		}
-
-
 	}
 }
